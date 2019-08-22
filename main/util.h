@@ -1,8 +1,3 @@
-struct HSV {
-  byte r;
-  byte g;
-  byte b;
-};
 // Fill the dots one after the other with a color
 void colorWipe(Adafruit_NeoMatrix * matrix, uint32_t c, uint8_t wait) {
   for (int row = 0; row < matrix->width(); row++) {
@@ -39,36 +34,47 @@ void print_array(const int *A, size_t width, size_t height) {
 
 
 
+RGB colors[] = {
+  {0, 0, 0},
+  {255, 0, 255},
+  {0, 255, 0}
+};
+
+
 // for a serpentine raster int pos;
-int getLEDpos(int row, int column) { 
-  int width = mw;
-  int test = width * row + column; 
-  return test;
+int getLEDpos(int row, int col) {
+  int MATRIX_WIDTH = mw;
+
+  int pos;
+  if (row & 0x01) {
+    // Odd rows run backwards
+    int reverseX = (MATRIX_WIDTH - 1) - col;
+    pos = (row * MATRIX_WIDTH) + reverseX;
+  } else {
+    // Even rows run forwards
+    pos = (row * MATRIX_WIDTH) + col;
+  }
+  return pos;
 }
+
+
 
 void displayMatrix(MatrixImage matrixImage) {
   for (int row = 0; row < mh; row++) {
     for (int column = 0; column < mw; column++) {
       int colorIndex = matrixImage.image[row][column];
 
-      //      if (!matrixImage.clearScreen && colorIndex == 0) {
-      //        continue;
-      //      }
-
-      RGB color = matrixImage.colors[colorIndex];
-      int pixel = getLEDpos(row, column);
-      //strip.setPixelColor(pixel, strip.Color(color.r, color.g, color.b));
-      matrix->drawPixel(row, column, matrix->Color(0, 0, 255));
-      if (colorIndex == 1 || colorIndex == 2) {
-        //strip.setPixelColor(pixel, strip.gamma32(strip.ColorHSV(hsvColor.h, hsvColor.s, hsvColor.v)));
-        strip.setPixelColor(pixel, strip.Color(255, 0, 255));
-//        matrix->drawPixel(row, column, matrix->Color(255, 0, 255));
+      if (!matrixImage.clearScreen && colorIndex == 0) {
+        //continue;
       }
-      
+
+      RGB color = colors[colorIndex];
+      int pixel = getLEDpos(row, column);
+      strip.setPixelColor(pixel, strip.Color(color.r, color.g, color.b));
     }
+    
   }
   strip.show();
-//  matrix->show();
   delay(matrixImage.delayTime);
 }
 
@@ -86,11 +92,11 @@ void rainbow(int wait) {
 }
 
 void theaterChase(uint32_t color, int wait) {
-  for(int a=0; a<10; a++) {  // Repeat 10 times...
-    for(int b=0; b<3; b++) { //  'b' counts from 0 to 2...
+  for (int a = 0; a < 10; a++) { // Repeat 10 times...
+    for (int b = 0; b < 3; b++) { //  'b' counts from 0 to 2...
       strip.clear();         //   Set all pixels in RAM to 0 (off)
       // 'c' counts up from 'b' to end of strip in steps of 3...
-      for(int c=b; c<strip.numPixels(); c += 3) {
+      for (int c = b; c < strip.numPixels(); c += 3) {
         strip.setPixelColor(c, color); // Set pixel 'c' to value 'color'
       }
       strip.show(); // Update strip with new contents
@@ -101,10 +107,10 @@ void theaterChase(uint32_t color, int wait) {
 
 void theaterChaseRainbow(int wait) {
   int firstPixelHue = 0;     // First pixel starts at red (hue 0)
-  for(int a=0; a<30; a++) {  // Repeat 30 times...
-    for(int b=0; b<3; b++) { //  'b' counts from 0 to 2...
+  for (int a = 0; a < 30; a++) { // Repeat 30 times...
+    for (int b = 0; b < 3; b++) { //  'b' counts from 0 to 2...
       strip.clear();         //   Set all pixels in RAM to 0 (off)
-      for(int c=b; c<strip.numPixels(); c += 3) {
+      for (int c = b; c < strip.numPixels(); c += 3) {
         int      hue   = firstPixelHue + c * 65536L / strip.numPixels();
         uint32_t color = strip.gamma32(strip.ColorHSV(hue)); // hue -> RGB
         strip.setPixelColor(c, color); // Set pixel 'c' to value 'color'

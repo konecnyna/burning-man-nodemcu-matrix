@@ -35,10 +35,12 @@ void setup() {
   strip.begin(); // Initialize NeoPixel strip object (REQUIRED)
   strip.show();  // Initialize all pixels to 'off'
   strip.setBrightness(BRIGHTNESS);
+  makeFireAnimation();
 }
 
 
 void loop() {
+  strip.clear();
   uint16_t bmpcolor[] = { LED_GREEN_HIGH, LED_BLUE_HIGH, LED_RED_HIGH };
   static uint8_t pixmap_count = ((mw + 7) / 8) * ((mh + 7) / 8);
 
@@ -55,7 +57,7 @@ void loop() {
   //    display_bitmap(3, bmpcolor[0]);
   //
 
-    makeFireAnimation();
+//    makeFireAnimation();
 //  rainbow(10);
   //    colorWipe(matrix, matrix->Color(255, 0, 255), 25);
   //  scrollText("BM 19", matrix->Color(255, 0, 0));
