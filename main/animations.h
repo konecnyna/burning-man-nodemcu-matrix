@@ -16,5 +16,5 @@ void makeFireAnimation() {
   //    }
   //  }
 
-  displayMatrix(testbounds);
+  displayMatrix(eggplant);
 }

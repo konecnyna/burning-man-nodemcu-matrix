@@ -8,13 +8,6 @@
 #define mw 8
 #define mh 16
 
-//
-//Adafruit_NeoMatrix *matrix = new Adafruit_NeoMatrix(mw, mh, 1, 2, PIN,
-//    NEO_MATRIX_TOP     + NEO_MATRIX_LEFT +
-//    NEO_MATRIX_ROWS + NEO_MATRIX_ZIGZAG,
-//    NEO_GRB            + NEO_KHZ800);
-
-
 
 Adafruit_NeoMatrix *matrix = new Adafruit_NeoMatrix(8, 8, 2, 1, PIN,
     NEO_TILE_TOP     + NEO_TILE_LEFT +
@@ -24,6 +17,7 @@ Adafruit_NeoMatrix *matrix = new Adafruit_NeoMatrix(8, 8, 2, 1, PIN,
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(128, PIN, NEO_GRB + NEO_KHZ800);
 
 
+#include "color.h"
 #include "images.h"
 #include "util.h"
 #include "animations.h"
@@ -33,11 +27,14 @@ Adafruit_NeoPixel strip = Adafruit_NeoPixel(128, PIN, NEO_GRB + NEO_KHZ800);
 
 void setup() {
   Serial.begin(115200);
-  matrix->begin();
-  matrix->setTextWrap(false);
-  matrix->setBrightness(BRIGHTNESS);
-  matrix->clear();
+  //  matrix->begin();
+  //  matrix->setTextWrap(false);
+  //  matrix->setBrightness(BRIGHTNESS);
+  //  matrix->clear();
   //matrix->setRemapFunction(myRemapFn);
+  strip.begin(); // Initialize NeoPixel strip object (REQUIRED)
+  strip.show();  // Initialize all pixels to 'off'
+  strip.setBrightness(BRIGHTNESS);
 }
 
 
@@ -59,12 +56,15 @@ void loop() {
   //
 
     makeFireAnimation();
+//  rainbow(10);
   //    colorWipe(matrix, matrix->Color(255, 0, 255), 25);
-  //scrollText("BM 19", matrix->Color(255, 0, 0));
+  //  scrollText("BM 19", matrix->Color(255, 0, 0));
   //delay(5 * 1000);
   //  colorWipeBottomUp(matrix, matrix->Color(226, 136, 34), 25);
   //  delay(5 * 1000);
 }
+
+
 
 uint16_t myRemapFn(uint16_t x, uint16_t y) {
 

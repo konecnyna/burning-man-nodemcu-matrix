@@ -1,8 +1,3 @@
-struct RGB {
-  byte r;
-  byte g;
-  byte b;
-};
 
 typedef struct  {
   RGB colors[10];
@@ -519,7 +514,7 @@ int fire_work_image_12[16][8] = {
 //
 ////
 MatrixImage eggplant = {
-  { { 0, 0, 0}, { 255, 255, 255}, {0, 255, 0} },
+  { { 0, 0, 0}, { 255, 0, 255}, {0, 255, 0} },
   false,
   {
     {0, 0, 0, 0, 0, 0, 0, 0},
