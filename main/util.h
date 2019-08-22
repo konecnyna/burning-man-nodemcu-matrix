@@ -32,3 +32,15 @@ void colorWipeBottomUp(Adafruit_NeoMatrix * matrix, uint32_t c, uint8_t wait) {
     }
   }
 }
+
+
+void print_array(const int *A, size_t width, size_t height) {
+  Serial.println("-------------------------------");
+  for (size_t i = 0; i < height; ++i) {
+    for (size_t j = 0; j < width; ++j) {
+      Serial.print(A[i * width + j]);
+    }
+    Serial.println("");
+  }
+  Serial.println("-------------------------------");
+}
