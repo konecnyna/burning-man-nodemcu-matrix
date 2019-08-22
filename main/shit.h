@@ -96,6 +96,8 @@ mono_bmp[][8] =
   },
 };
 
+
+
 static const uint16_t PROGMEM
 // These bitmaps were written for a backend that only supported
 // 4 bits per color with Blue/Green/Red ordering while neomatrix
@@ -392,20 +394,20 @@ void display_scrollText() {
   matrix->clear();
   matrix->setTextWrap(false);  // we don't wrap text so it scrolls nicely
   matrix->setTextSize(1);
-  matrix->setRotation(0);
-  for (int8_t x = 7; x >= -42; x--) {
-    matrix->clear();
-    matrix->setCursor(x, 0);
-    matrix->setTextColor(LED_GREEN_HIGH);
-    matrix->print("Hello");
-    if (mh > 11) {
-      matrix->setCursor(-20 - x, mh - 7);
-      matrix->setTextColor(LED_ORANGE_HIGH);
-      matrix->print("World");
-    }
-    matrix->show();
-    delay(50);
-  }
+//  matrix->setRotation(0);
+//  for (int8_t x = 7; x >= -42; x--) {
+//    matrix->clear();
+//    matrix->setCursor(x, 0);
+//    matrix->setTextColor(LED_GREEN_HIGH);
+//    matrix->print("Hello");
+//    if (mh > 11) {
+//      matrix->setCursor(-20 - x, mh - 7);
+//      matrix->setTextColor(LED_ORANGE_HIGH);
+//      matrix->print("World");
+//    }
+//    matrix->show();
+//    delay(50);
+//  }
 
   matrix->setRotation(3);
   matrix->setTextColor(LED_BLUE_HIGH);

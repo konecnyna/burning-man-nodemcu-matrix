@@ -1,36 +1,34 @@
-// Adafruit_NeoMatrix example for single NeoPixel Shield.
-// By Marc MERLIN <marc_soft@merlins.org>
-// Contains code (c) Adafruit, license BSD
 
 #include <Adafruit_GFX.h>
 #include <Adafruit_NeoMatrix.h>
 #include <Adafruit_NeoPixel.h>
-#include "util.h"
-
-// Choose your prefered pixmap
-//#include "heart24.h"
-//#include "yellowsmiley24.h"
-//#include "bluesmiley24.h"
-#include "smileytongue24.h"
 
 #define PIN D8
-
-// Max is 255, 32 is a conservative value to not overload
-// a USB power supply (500mA) for 12x12 pixels.
 #define BRIGHTNESS 5
-
-// Define matrix width and height.
 #define mw 8
 #define mh 16
 
+//
+//Adafruit_NeoMatrix *matrix = new Adafruit_NeoMatrix(mw, mh, 1, 2, PIN,
+//    NEO_MATRIX_TOP     + NEO_MATRIX_LEFT +
+//    NEO_MATRIX_ROWS + NEO_MATRIX_ZIGZAG,
+//    NEO_GRB            + NEO_KHZ800);
 
-Adafruit_NeoMatrix *matrix = new Adafruit_NeoMatrix(mw, mh, PIN,
-    NEO_MATRIX_TOP     + NEO_MATRIX_LEFT +
-    NEO_MATRIX_ROWS + NEO_MATRIX_ZIGZAG,
+
+
+Adafruit_NeoMatrix *matrix = new Adafruit_NeoMatrix(8, 8, 2, 1, PIN,
+    NEO_TILE_TOP     + NEO_TILE_LEFT +
+    NEO_TILE_COLUMNS + NEO_TILE_PROGRESSIVE,
     NEO_GRB            + NEO_KHZ800);
 
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(128, PIN, NEO_GRB + NEO_KHZ800);
 
+
+#include "images.h"
+#include "util.h"
+#include "animations.h"
 #include "shit.h"
+#include "text.h"
 
 
 void setup() {
@@ -39,7 +37,9 @@ void setup() {
   matrix->setTextWrap(false);
   matrix->setBrightness(BRIGHTNESS);
   matrix->clear();
+  //matrix->setRemapFunction(myRemapFn);
 }
+
 
 void loop() {
   uint16_t bmpcolor[] = { LED_GREEN_HIGH, LED_BLUE_HIGH, LED_RED_HIGH };
@@ -55,21 +55,18 @@ void loop() {
   //  delay(3000);
 
   //display_rgbBitmap(1);
-  display_bitmap(3, bmpcolor[0]);
- 
-
-  int test[3][3] = {
-    { 1, 2, 3 },
-    { 4, 5, 6 },
-    { 7, 8, 9 },
-  };
-
-  print_array(*test, 3, 3);
-  delay(30*1000);
-  //  display_scrollText();
+  //    display_bitmap(3, bmpcolor[0]);
   //
-  //  // pan a big pixmap
-  //display_panOrBounceBitmap(8);
-  // bounce around a small one
-  //  display_panOrBounceBitmap(8);
+
+    makeFireAnimation();
+  //    colorWipe(matrix, matrix->Color(255, 0, 255), 25);
+  //scrollText("BM 19", matrix->Color(255, 0, 0));
+  //delay(5 * 1000);
+  //  colorWipeBottomUp(matrix, matrix->Color(226, 136, 34), 25);
+  //  delay(5 * 1000);
+}
+
+uint16_t myRemapFn(uint16_t x, uint16_t y) {
+
+  return mw * y + x;
 }
