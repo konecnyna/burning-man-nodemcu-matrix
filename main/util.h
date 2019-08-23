@@ -69,7 +69,7 @@ void displayMatrix(MatrixImage matrixImage) {
       }
 
       RGB color = matrixImage.colors[colorIndex];
-      int pixel = getLEDpos(row, column);    
+      int pixel = getLEDpos(row, column);
       strip.setPixelColor(pixel, strip.Color(color.r, color.g, color.b));
     }
 
@@ -118,6 +118,22 @@ void theaterChaseRainbow(int wait) {
       strip.show();                // Update strip with new contents
       delay(wait);                 // Pause for a moment
       firstPixelHue += 65536 / 90; // One cycle of color wheel over 90 frames
+    }
+  }
+}
+
+
+
+void shiftUpArray(int matrix[16][8]) {
+  int rowCopy;
+  for (int row = 0; row < 16; row++) {
+    for (int col = 0; col < 8; col++) {
+      if (row == 0) {
+        continue;
+      }
+      rowCopy = matrix[row - 1][col];
+      matrix[row - 1][col] = matrix[row][col];
+      matrix[row][col] = rowCopy;
     }
   }
 }

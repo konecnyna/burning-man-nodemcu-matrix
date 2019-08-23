@@ -33,6 +33,8 @@ void setup() {
   strip.begin(); // Initialize NeoPixel strip object (REQUIRED)
   strip.show();  // Initialize all pixels to 'off'
   strip.setBrightness(BRIGHTNESS);
+
+  
 }
 
 

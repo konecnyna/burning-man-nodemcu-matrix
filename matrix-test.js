@@ -11,7 +11,7 @@
 
 const test = [
   [0,0,0],
-  [0,0,0],
+  [2,2,2],
   [0,0,0],
   [1,1,1]
 ]
@@ -45,18 +45,17 @@ const testPos = (row, column) => {
 
 const shiftMatrix = (shifts) => {
   while(shifts-- > 0) {
-
-  
+    let rowCopy;    
     for (row = 0; row < test.length; row++) {
       for (col = 0; col < test[row].length; col++) {      
         if (row == 0) {
           continue;
         }
-
+        rowCopy = test[row - 1][col]
         // copy.
         test[row - 1][col] = test[row][col];
         //shft in zeros.
-        test[row][col] = 0;
+        test[row][col] = rowCopy;
       }
     }
   }
@@ -65,4 +64,4 @@ const shiftMatrix = (shifts) => {
 
 
 
-shiftMatrix(3);
+shiftMatrix(1);

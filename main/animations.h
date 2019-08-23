@@ -24,37 +24,43 @@ void makeFireAnimation() {
 void startBm2019() {
   static uint8_t pixmap_count = ((mw + 7) / 8) * ((mh + 7) / 8);
 
-  displayMatrix(bm);
-  cleanup();
-  
-  displayMatrix(eggplant);
-  cleanup();
 
-  displayCheckers();
-  cleanup();
+  //  displayMatrix(bm);
+  //  cleanup();
 
-  circles();
-  cleanup();
-
-  squares();
-  cleanup();
-
-  rainbow(10);
-  cleanup();
-
-  theaterChase(strip.Color(255, 0, 255), 250);
-  cleanup();
-
-
-  loopSmiles();
-  cleanup();
-
-  whiteSquares();
-  cleanup();
-
-  makeFireAnimation();
-  cleanup();
-
+  for (int i = 0; i < 3; i++) {
+    displayMatrix(eggplant);    
+    shiftUpArray(eggplant.image);
+    print_array(*eggplant.image, 16,8);
+  }
+  //  displayMatrix(eggplant);
+  //  cleanup();
+  //
+  //  displayCheckers();
+  //  cleanup();
+  //
+  //  circles();
+  //  cleanup();
+  //
+  //  squares();
+  //  cleanup();
+  //
+  //  rainbow(10);
+  //  cleanup();
+  //
+  //  theaterChase(strip.Color(255, 0, 255), 250);
+  //  cleanup();
+  //
+  //
+  //  loopSmiles();
+  //  cleanup();
+  //
+  //  whiteSquares();
+  //  cleanup();
+  //
+  //  makeFireAnimation();
+  //  cleanup();
+  //
 
   //  scrollText("BM 19", matrix->Color(255, 0, 0));
   //delay(5 * 1000);
