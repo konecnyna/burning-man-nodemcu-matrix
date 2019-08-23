@@ -63,5 +63,44 @@ const shiftMatrix = (shifts) => {
 }
 
 
+const testA = [
+  [1, 1, 0, 0, 0],
+  [1, 0, 0, 0, 0],
+  [0, 0, 0, 0, 1]
+];
 
-shiftMatrix(1);
+const testAResult = [
+  [1, 1, 0, 0, 0, 0, 0, 0],
+  [1, 1, 0, 0, 0, 0, 0, 0],
+  [1, 1, 0, 0, 0, 0, 0, 0],
+  [1, 1, 0, 0, 0, 0, 0, 0],
+  [1, 1, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 1, 1, 1]
+];
+const mirrorMatrix = (test) => {  
+    let rowCopy;    
+    for (row = 0; row < test.length; row++) {
+      for (col = 0; col < test[row].length / 2; col++) {            
+        const mirrorIndex = test[row].length - 1 - col;                
+        rowCopy = test[row][mirrorIndex];
+        // copy.
+        test[row][mirrorIndex] = test[row][col];
+        //shft in zeros.
+        test[row][col] = rowCopy;
+      }
+      console.log(test[row]);    
+    }
+    
+}
+
+mirrorMatrix(testAResult)

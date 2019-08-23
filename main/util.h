@@ -1,3 +1,10 @@
+typedef struct  {
+  RGB colors[10];
+  boolean clearScreen;
+  int image[16][8];
+  int delayTime;
+} MatrixImage;
+
 // Fill the dots one after the other with a color
 void colorWipe(Adafruit_NeoMatrix * matrix, uint32_t c, uint8_t wait) {
   for (int row = 0; row < matrix->width(); row++) {
@@ -133,6 +140,34 @@ void shiftUpArray(int matrix[16][8]) {
       }
       rowCopy = matrix[row - 1][col];
       matrix[row - 1][col] = matrix[row][col];
+      matrix[row][col] = rowCopy;
+    }
+  }
+}
+
+
+uint16_t myRemapFn(uint16_t row, uint16_t col) {
+  int MATRIX_WIDTH = mw;
+
+  int pos;
+  if (row & 0x01) {
+    // Odd rows run backwards
+    int reverseX = (MATRIX_WIDTH - 1) - col;
+    pos = (row * MATRIX_WIDTH) + reverseX;
+  } else {
+    // Even rows run forwards
+    pos = (row * MATRIX_WIDTH) + col;
+  }
+  return pos;  
+}
+
+void mirrorMatrix(int matrix[][8], int height, int width) {
+  int rowCopy;
+  for (int row = 0; row < height; row++) {
+    for (int col = 0; col < width / 2; col++) {
+      int mirrorIndex = width - 1 - col;
+      rowCopy = matrix[row][mirrorIndex];
+      matrix[row][mirrorIndex] = matrix[row][col];
       matrix[row][col] = rowCopy;
     }
   }

@@ -6,18 +6,18 @@ void scrollText(String textToDisplay, int color) {
   int x = matrix->width();
   // Account for 6 pixel wide characters plus a space
   int pixelsInText = textToDisplay.length() * mh;
-  matrix->setTextSize(1);
-  matrix->setRotation(2);
-  matrix->setTextColor(color);
-  matrix->setCursor(x, 0);
-  matrix->print(textToDisplay);
-  matrix->show();
+  textMatrix->setTextSize(1);
+  textMatrix->setRotation(2);
+  textMatrix->setTextColor(color);
+  textMatrix->setCursor(x, 0);
+  textMatrix->print(textToDisplay);
+  textMatrix->show();
 
   while (x > (matrix->width() - pixelsInText)) {
-    matrix->fillScreen(matrix->Color(0, 0, 0));
-    matrix->setCursor(--x, 0);
-    matrix->print(textToDisplay);
-    matrix->show();
+    textMatrix->fillScreen(matrix->Color(0, 0, 0));
+    textMatrix->setCursor(--x, 0);
+    textMatrix->print(textToDisplay);
+    textMatrix->show();
     delay(150);
   }
 }

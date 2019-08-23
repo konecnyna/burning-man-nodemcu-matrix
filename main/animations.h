@@ -1,7 +1,7 @@
 #include "shit.h"
 #include "color.h"
-#include "images.h"
 #include "util.h"
+#include "images.h"
 #include "text.h"
 
 
@@ -21,48 +21,52 @@ void makeFireAnimation() {
   }
 }
 
+void displayEggplant() {
+  for (int i = 60; i >= 0; i--) {
+    displayMatrix(eggplant_animate);
+    shiftUpArray(eggplant_animate.image);
+    delay(16 * 3);
+  }
+}
+
 void startBm2019() {
   static uint8_t pixmap_count = ((mw + 7) / 8) * ((mh + 7) / 8);
 
+    scrollText("FUCK YOUR BURN", textMatrix->Color(255, 0, 255));
+    
+    displayMatrix(bm);
+    cleanup();
 
-  //  displayMatrix(bm);
-  //  cleanup();
+    displayEggplant();
+    cleanup();
+  
+    displayCheckers();
+    cleanup();
+  
+    circles();
+    cleanup();
+  
+    squares();
+    cleanup();
+  
+    rainbow(10);
+    cleanup();
+  
+    theaterChase(strip.Color(255, 0, 255), 250);
+    cleanup();
+  
+  
+    loopSmiles();
+    cleanup();
+  
+    whiteSquares();
+    cleanup();
+  
+    makeFireAnimation();
+    cleanup();
 
-  for (int i = 0; i < 3; i++) {
-    displayMatrix(eggplant);    
-    shiftUpArray(eggplant.image);
-    print_array(*eggplant.image, 16,8);
-  }
-  //  displayMatrix(eggplant);
-  //  cleanup();
-  //
-  //  displayCheckers();
-  //  cleanup();
-  //
-  //  circles();
-  //  cleanup();
-  //
-  //  squares();
-  //  cleanup();
-  //
-  //  rainbow(10);
-  //  cleanup();
-  //
-  //  theaterChase(strip.Color(255, 0, 255), 250);
-  //  cleanup();
-  //
-  //
-  //  loopSmiles();
-  //  cleanup();
-  //
-  //  whiteSquares();
-  //  cleanup();
-  //
-  //  makeFireAnimation();
-  //  cleanup();
-  //
 
-  //  scrollText("BM 19", matrix->Color(255, 0, 0));
+   scrollText("BURNING MAN '19", textMatrix->Color(0, 0, 255));
   //delay(5 * 1000);
   //  colorWipeBottomUp(matrix, matrix->Color(226, 136, 34), 25);
   //  delay(5 * 1000);

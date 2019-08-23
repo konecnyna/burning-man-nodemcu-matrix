@@ -8,15 +8,16 @@
 #define mw 8
 #define mh 16
 
-//Adafruit_NeoMatrix *matrix = new Adafruit_NeoMatrix(8, 8, 1, 2, PIN,
-//    NEO_TILE_TOP     + NEO_TILE_LEFT +
-//    NEO_TILE_COLUMNS + NEO_TILE_PROGRESSIVE,
-//    NEO_GRB            + NEO_KHZ800);
-
 
 Adafruit_NeoMatrix *matrix = new Adafruit_NeoMatrix(mw, mh, PIN,
     NEO_MATRIX_TOP     + NEO_MATRIX_LEFT +
     NEO_MATRIX_ROWS + NEO_MATRIX_ZIGZAG,
+    NEO_GRB            + NEO_KHZ800);
+
+
+Adafruit_NeoMatrix *textMatrix = new Adafruit_NeoMatrix(16, 8, PIN,
+    NEO_MATRIX_TOP     + NEO_MATRIX_LEFT +
+    NEO_MATRIX_COLUMNS + NEO_MATRIX_ZIGZAG,
     NEO_GRB            + NEO_KHZ800);
 
 
@@ -29,10 +30,18 @@ void setup() {
   matrix->setTextWrap(false);
   matrix->setBrightness(BRIGHTNESS);
   matrix->clear();
+
+  textMatrix->begin();
+  textMatrix->setTextWrap(false);
+  textMatrix->setBrightness(BRIGHTNESS);
+  textMatrix->clear();
   
   strip.begin(); // Initialize NeoPixel strip object (REQUIRED)
   strip.show();  // Initialize all pixels to 'off'
   strip.setBrightness(BRIGHTNESS);
+
+  //Flips em!
+  initImages();
 
   
 }
