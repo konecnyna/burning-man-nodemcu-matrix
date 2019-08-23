@@ -394,20 +394,20 @@ void display_scrollText() {
   matrix->clear();
   matrix->setTextWrap(false);  // we don't wrap text so it scrolls nicely
   matrix->setTextSize(1);
-//  matrix->setRotation(0);
-//  for (int8_t x = 7; x >= -42; x--) {
-//    matrix->clear();
-//    matrix->setCursor(x, 0);
-//    matrix->setTextColor(LED_GREEN_HIGH);
-//    matrix->print("Hello");
-//    if (mh > 11) {
-//      matrix->setCursor(-20 - x, mh - 7);
-//      matrix->setTextColor(LED_ORANGE_HIGH);
-//      matrix->print("World");
-//    }
-//    matrix->show();
-//    delay(50);
-//  }
+  //  matrix->setRotation(0);
+  //  for (int8_t x = 7; x >= -42; x--) {
+  //    matrix->clear();
+  //    matrix->setCursor(x, 0);
+  //    matrix->setTextColor(LED_GREEN_HIGH);
+  //    matrix->print("Hello");
+  //    if (mh > 11) {
+  //      matrix->setCursor(-20 - x, mh - 7);
+  //      matrix->setTextColor(LED_ORANGE_HIGH);
+  //      matrix->print("World");
+  //    }
+  //    matrix->show();
+  //    delay(50);
+  //  }
 
   matrix->setRotation(3);
   matrix->setTextColor(LED_BLUE_HIGH);
@@ -526,12 +526,49 @@ void displayCheckers() {
   }
 }
 
-void loopSmiles(uint16_t bmpcolor[]) {
-  for (uint8_t i = 2; i <= 4; i++)
-  {    
+
+
+void loopSmiles() {
+  uint16_t bmpcolor[] = {
+    strip.Color(0, 255, 0),
+    strip.Color(255, 255, 0),
+  };
+
+  for (uint8_t i = 2; i <= 4; i++) {
     display_bitmap(i, bmpcolor[i - 2]);
     // If more than one pixmap displayed per screen, display more quickly.
     delay(mw > 8 ? 500 : 1500);
   }
+}
+
+void circles() {
+  display_circles();
+  delay(5000);
+}
+
+void squares() {
+  display_boxes();
+  delay(5000);
+}
+
+
+void whiteSquares() {
+  for (int i = 0; i < 6; i++) {
+    matrix->clear();
+    //    matrix->fillRect(0, 0, mw, mh, LED_WHITE_HIGH);
+    matrix->drawRect(i, i, mw - i, mh - i, LED_WHITE_MEDIUM);
+    //    matrix->drawRect(2, 2, mw - 4, mh - 4, LED_WHITE_LOW);
+    //    matrix->drawRect(3, 3, mw - 6, mh - 6, LED_WHITE_VERYLOW);
+    matrix->show();
+    delay(500);
+  }
+
+  for (int i = 6; i >= 0; i--) {
+    matrix->clear();
+    matrix->drawRect(i, i, mw - i, mh - i, LED_WHITE_MEDIUM);
+    matrix->show();
+    delay(500);
+  }
+  delay(5000);
 }
 /*********************************************************/

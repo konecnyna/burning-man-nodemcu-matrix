@@ -68,11 +68,11 @@ void displayMatrix(MatrixImage matrixImage) {
         //continue;
       }
 
-      RGB color = colors[colorIndex];
-      int pixel = getLEDpos(row, column);
+      RGB color = matrixImage.colors[colorIndex];
+      int pixel = getLEDpos(row, column);    
       strip.setPixelColor(pixel, strip.Color(color.r, color.g, color.b));
     }
-    
+
   }
   strip.show();
   delay(matrixImage.delayTime);
