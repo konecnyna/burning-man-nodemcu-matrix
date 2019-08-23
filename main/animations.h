@@ -21,21 +21,30 @@ void makeFireAnimation() {
   }
 }
 
-void pingpongImage(MatrixImage img, int loops) {
+void pingpongImage(MatrixImage img, int loops, int (*decayFn)(int)) {
   while (loops-- > 0) {
     for (int i = 8; i >= 0; i--) {
       displayMatrix(img);
-      shiftUpArray(img.image);      
-      delay(16 * 5);
+      shiftUpArray(img.image);            
+      delay((*decayFn)(loops));
     }
-    
+
     for (int i = 8; i >= 0; i--) {
       displayMatrix(img);
       shiftDownArray(img.image);
-      delay(16 * 5);
+      delay((*decayFn)(loops));
     }
   }
 }
+
+int decay(int loops) {
+  return 16 + (16 * loops);
+}
+
+int noDecay(int loops) {
+  return 16;
+}
+ 
 void panImage(MatrixImage mtrx) {
   for (int i = 100; i >= 0; i--) {
     displayMatrix(mtrx);
@@ -45,26 +54,24 @@ void panImage(MatrixImage mtrx) {
 }
 
 void startBm2019() {
-  pingpongImage(heart, 15);
-
-  //panImage(heart);
+  
+  pingpongImage(eggplant_animate, 10, decay);
+  pingpongImage(eggplant_animate, 15, noDecay);
   cleanup();
-
+  
   scrollText("FUCK YOUR BURN", textMatrix->Color(255, 0, 255));
 
   displayMatrix(bm);
   cleanup();
 
-  panImage(eggplant_animate);
+  panImage(heart);
   cleanup();
-
 
   displayCheckers();
   cleanup();
 
   circles();
   cleanup();
-
 
   squares();
   cleanup();
@@ -75,7 +82,6 @@ void startBm2019() {
   theaterChase(strip.Color(255, 0, 255), 250);
   cleanup();
 
-
   loopSmiles();
   cleanup();
 
@@ -84,7 +90,6 @@ void startBm2019() {
 
   makeFireAnimation();
   cleanup();
-
 
   scrollText("BURNING MAN '19", textMatrix->Color(0, 0, 255));
   //delay(5 * 1000);

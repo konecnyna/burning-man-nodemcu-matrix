@@ -162,4 +162,13 @@ const kyleDown = (shifts) => {
   console.log(test);
 }
 
-kyleDown(3)
+
+const kewl = (loops)=> {  
+  iteration = 0;
+  while (loops-- > 0) {    
+    console.log(16 + (16 *loops));
+  }
+}
+
+
+kewl(25)

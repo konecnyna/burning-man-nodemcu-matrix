@@ -2,10 +2,10 @@
 #include <Adafruit_NeoMatrix.h>
 #include <Adafruit_NeoPixel.h>
 
+
 void scrollText(String textToDisplay, int color) {
   int x = matrix->width();
-  // Account for 6 pixel wide characters plus a space
-  int pixelsInText = textToDisplay.length() * 5;
+  int pixelsInText = textToDisplay.length() * 7;
   textMatrix->setTextSize(1);
   textMatrix->setRotation(2);
   textMatrix->setTextColor(color);
@@ -18,7 +18,7 @@ void scrollText(String textToDisplay, int color) {
     textMatrix->setCursor(--x, 0);
     textMatrix->print(textToDisplay);
     textMatrix->show();
-    delay(150);
+    delay(50);
   }
 }
 
