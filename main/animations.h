@@ -21,26 +21,43 @@ void makeFireAnimation() {
   }
 }
 
+void pingpongImage(MatrixImage img, int loops) {
+  while (loops-- > 0) {
+    for (int i = 8; i >= 0; i--) {
+      displayMatrix(img);
+      shiftUpArray(img.image);      
+      delay(16 * 5);
+    }
+    
+    for (int i = 8; i >= 0; i--) {
+      displayMatrix(img);
+      shiftDownArray(img.image);
+      delay(16 * 5);
+    }
+  }
+}
 void panImage(MatrixImage mtrx) {
   for (int i = 100; i >= 0; i--) {
     displayMatrix(mtrx);
-    shiftUpArray(mtrx.image);
+    shiftLoopArray(mtrx.image);
     delay(16 * 5);
   }
 }
 
 void startBm2019() {
-  rainbow(5, 5);
-  scrollText("FUCK YOUR BURN", textMatrix->Color(255, 0, 255));
+  pingpongImage(heart, 15);
 
-  panImage(eggplant_animate);
+  //panImage(heart);
   cleanup();
+
+  scrollText("FUCK YOUR BURN", textMatrix->Color(255, 0, 255));
 
   displayMatrix(bm);
   cleanup();
 
-  panImage(heart);
+  panImage(eggplant_animate);
   cleanup();
+
 
   displayCheckers();
   cleanup();

@@ -13,6 +13,9 @@ const test = [
   [0,0,0],
   [2,2,2],
   [0,0,0],
+  [0,0,0],
+  [0,0,0],
+  [0,0,0],
   [1,1,1]
 ]
 
@@ -103,4 +106,60 @@ const mirrorMatrix = (test) => {
     
 }
 
-mirrorMatrix(testAResult)
+const shiftMatrixDOWN = (shifts) => {
+  console.log(test);
+  while(shifts-- > 0) {
+    let rowCopy;  
+    for (row = test.length-1; row > 0; row--) {
+      for (col = 0; col < test[row].length; col++) {      
+              
+        rowCopy = test[row - 1][col]
+        // copy.
+        test[row - 1][col] = test[row][col];
+        //shft in zeros.
+        test[row][col] = rowCopy;
+      }
+      console.log(test);
+    }
+  }
+  console.log(test);
+}
+
+
+const kyle = (shifts) => {
+  console.log(test);
+  while(shifts-- > 0) {
+    let rowCopy;    
+    for (row = 0; row < test.length; row++) {
+      for (col = 0; col < test[row].length; col++) {      
+        // rowCopy = test[row - 1][col]
+        // copy.
+        if (row == test.length - 1) {
+          test[row][col] = 0;   
+        } else {
+          test[row][col] = test[row + 1][col];
+        } 
+      }
+    }
+  }
+  console.log(test);
+}
+
+const kyleDown = (shifts) => {
+  console.log(test);
+  while(shifts-- > 0) {
+    let rowCopy;    
+    for (row = test.length - 1; row >= 0; row--) {
+      for (col = 0; col < test[row].length; col++) {              
+        if (row == 0) {
+          test[row][col] = 0;   
+        } else {
+          test[row][col] = test[row - 1][col];
+        } 
+      }
+    }
+  }
+  console.log(test);
+}
+
+kyleDown(3)
