@@ -71,8 +71,9 @@ void displayMatrix(MatrixImage matrixImage) {
     for (int column = 0; column < mw; column++) {
       int colorIndex = matrixImage.image[row][column];
 
-      if (!matrixImage.clearScreen && colorIndex == 0) {
-        //continue;
+      if (matrixImage.clearScreen && colorIndex == 0) {
+        Serial.println("Skipping pixel draw!");
+        continue;
       }
 
       RGB color = matrixImage.colors[colorIndex];
@@ -85,17 +86,31 @@ void displayMatrix(MatrixImage matrixImage) {
   delay(matrixImage.delayTime);
 }
 
+void drawMatrix(MatrixImage matrixImage) {
+  for (int row = 0; row < mh; row++) {
+    for (int column = 0; column < mw; column++) {
+      int colorIndex = matrixImage.image[row][column];
+      RGB color = matrixImage.colors[colorIndex];
+      int pixel = getLEDpos(row, column);
+      strip.setPixelColor(pixel, strip.Color(color.r, color.g, color.b));
+    }
+  }
+}
+
 
 // Rainbow cycle along whole strip. Pass delay time (in ms) between frames.
-void rainbow(int wait) {
-  for (long firstPixelHue = 0; firstPixelHue < 3 * 65536; firstPixelHue += 256) {
-    for (int i = 0; i < strip.numPixels(); i++) { // For each pixel in strip...
-      int pixelHue = firstPixelHue + (i * 65536L / strip.numPixels());
-      strip.setPixelColor(i, strip.gamma32(strip.ColorHSV(pixelHue)));
+void rainbow(int wait, int loops) {
+  while (loops-- > 0) {
+    for (long firstPixelHue = 0; firstPixelHue < 3 * 65536; firstPixelHue += 256) {
+      for (int i = 0; i < strip.numPixels(); i++) { // For each pixel in strip...
+        int pixelHue = firstPixelHue + (i * 65536L / strip.numPixels());
+        strip.setPixelColor(i, strip.gamma32(strip.ColorHSV(pixelHue)));
+      }
+      strip.show(); // Update strip with new contents
+      delay(wait);  // Pause for a moment
     }
-    strip.show(); // Update strip with new contents
-    delay(wait);  // Pause for a moment
   }
+
 }
 
 void theaterChase(uint32_t color, int wait) {
@@ -158,7 +173,7 @@ uint16_t myRemapFn(uint16_t row, uint16_t col) {
     // Even rows run forwards
     pos = (row * MATRIX_WIDTH) + col;
   }
-  return pos;  
+  return pos;
 }
 
 void mirrorMatrix(int matrix[][8], int height, int width) {
