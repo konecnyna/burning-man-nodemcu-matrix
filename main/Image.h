@@ -1,20 +1,15 @@
 #include "./models/MatrixImage.h"
 
-void drawImage(Adafruit_NeoMatrix *matrix) {
-  // for (int row = 0; row < matrixWidth; row++) {
-
-    // for (int column = 0; column < mw; column++) {
-    //   int colorIndex = matrixImage.image[row][column];
-
-    //   if (matrixImage.clearScreen && colorIndex == 0) {
-    //     Serial.println("Skipping pixel draw!");
-    //     continue;
-    //   }
-
-    //   RGB color = matrixImage.colors[colorIndex];
-    //   int pixel = getLEDpos(row, column);
-    //   strip.setPixelColor(pixel, strip.Color(color.r, color.g, color.b));
-    // }
-  // strip.show();
-  // delay(matrixImage.delayTime);
+void drawImage(Adafruit_NeoMatrix *matrix)
+{
+  for (int row = 0; row < matrix->width(); row++)
+  {
+    for (int column = 0; column < matrix->height(); column++)
+    {
+      RGB color = RGB{255, 0, 0};
+      matrix->drawPixel(row, column, matrix->Color(color.r, color.g, color.b));
+      matrix->show();
+      delay(10);
+    }
+  }
 }
