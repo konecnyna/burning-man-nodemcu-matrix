@@ -2,7 +2,19 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_NeoMatrix.h>
 #include <Adafruit_NeoPixel.h>
-#include "scenes.h"
+
+// These imports are dependant on each other.
+//  Models
+#include "./models/rgb.h"
+#include "./models/MatrixImage.h"
+// Images
+#include "./images/EggplantImage.h"
+// Classes
+#include "Text.h"
+#include "Image.h"
+#include "Scenes.h"
+
+
 
 #define PIN D8
 #define BRIGHTNESS 5

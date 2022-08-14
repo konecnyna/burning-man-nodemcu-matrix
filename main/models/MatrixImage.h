@@ -1,8 +1,6 @@
-#include "rgb.h"
-
 typedef struct  {
-  RGB colors[10];
+  RGB colors[16];
   boolean clearScreen;
-  int image[16][8];
+  int pixels[44][11];
   int delayTime;
 } MatrixImage;

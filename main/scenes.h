@@ -1,12 +1,9 @@
-#include "Text.h"
-#include "Image.h"
-
 void startScenes(Adafruit_NeoMatrix *matrix)
 {
   matrix->clear();
-  
 
-  drawImage(matrix);
+  drawImage(matrix, fire2);
+  delay(10000);
   // pingpongImage(eggplant_animate, 10, decay);
   // pingpongImage(eggplant_animate, 15, noDecay);
   // cleanup();

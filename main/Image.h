@@ -1,15 +1,16 @@
-#include "./models/MatrixImage.h"
 
-void drawImage(Adafruit_NeoMatrix *matrix)
+void drawImage(Adafruit_NeoMatrix *matrix, MatrixImage image)
 {
+
   for (int row = 0; row < matrix->width(); row++)
   {
     for (int column = 0; column < matrix->height(); column++)
     {
-      RGB color = RGB{255, 0, 0};
-      matrix->drawPixel(row, column, matrix->Color(color.r, color.g, color.b));
-      matrix->show();
-      delay(10);
+      const RGB pixelColor = image.colors[image.pixels[row][column]];
+      const uint16_t matrixColor = matrix->Color(pixelColor.r, pixelColor.g, pixelColor.b);
+      matrix->drawPixel(row, column, matrixColor);
     }
   }
+
+  matrix->show();
 }
