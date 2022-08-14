@@ -394,31 +394,22 @@ void display_scrollText() {
   matrix->clear();
   matrix->setTextWrap(false);  // we don't wrap text so it scrolls nicely
   matrix->setTextSize(1);
-  //  matrix->setRotation(0);
-  //  for (int8_t x = 7; x >= -42; x--) {
-  //    matrix->clear();
-  //    matrix->setCursor(x, 0);
-  //    matrix->setTextColor(LED_GREEN_HIGH);
-  //    matrix->print("Hello");
-  //    if (mh > 11) {
-  //      matrix->setCursor(-20 - x, mh - 7);
-  //      matrix->setTextColor(LED_ORANGE_HIGH);
-  //      matrix->print("World");
-  //    }
-  //    matrix->show();
-  //    delay(50);
-  //  }
-
-  matrix->setRotation(3);
-  matrix->setTextColor(LED_BLUE_HIGH);
-  for (int8_t x = 7; x >= -45; x--) {
+  matrix->setRotation(0);
+  for (int8_t x = 7; x >= -42; x--) {
     matrix->clear();
-    matrix->setCursor(x, mw / 2 - 4);
-    matrix->print("Rotate");
+    matrix->setCursor(x, 0);
+    matrix->setTextColor(LED_GREEN_HIGH);
+    matrix->print("Hello");
+    if (mh > 11) {
+      matrix->setCursor(-20 - x, mh - 7);
+      matrix->setTextColor(LED_ORANGE_HIGH);
+      matrix->print("World");
+    }
     matrix->show();
     delay(50);
   }
-  matrix->setRotation(0);
+
+  
   matrix->setCursor(0, 0);
   matrix->show();
 }
