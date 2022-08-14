@@ -7,6 +7,8 @@
     "string": "cpp",
     "system_error": "cpp",
     "unordered_map": "cpp",
-    "vector": "cpp"
+    "vector": "cpp",
+    "*.tcc": "cpp",
+    "deque": "cpp"
   }
 }
