@@ -1,9 +1,4 @@
-typedef struct  {
-  RGB colors[10];
-  boolean clearScreen;
-  int image[16][8];
-  int delayTime;
-} MatrixImage;
+
 
 // Fill the dots one after the other with a color
 void colorWipe(Adafruit_NeoMatrix * matrix, uint32_t c, uint8_t wait) {
