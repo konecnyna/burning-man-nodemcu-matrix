@@ -55,43 +55,45 @@ void panImage(MatrixImage mtrx) {
 
 void startBm2019() {
   
-  pingpongImage(eggplant_animate, 10, decay);
-  pingpongImage(eggplant_animate, 15, noDecay);
-  cleanup();
+  // pingpongImage(eggplant_animate, 10, decay);
+  // pingpongImage(eggplant_animate, 15, noDecay);
+  // cleanup();
   
   scrollText("FUCK YOUR BURN", textMatrix->Color(255, 0, 255));
+//  display_resolution();
 
-  displayMatrix(bm);
-  cleanup();
 
-  panImage(heart);
-  cleanup();
+  // displayMatrix(bm);
+  // cleanup();
 
-  displayCheckers();
-  cleanup();
+  // panImage(heart);
+  // cleanup();
 
-  circles();
-  cleanup();
+  // displayCheckers();
+  // cleanup();
 
-  squares();
-  cleanup();
+  // circles();
+  // cleanup();
 
-  rainbow(5, 7);
-  cleanup();
+  // squares();
+  // cleanup();
 
-  theaterChase(strip.Color(255, 0, 255), 250);
-  cleanup();
+  // rainbow(5, 7);
+  // cleanup();
 
-  loopSmiles();
-  cleanup();
+  // theaterChase(strip.Color(255, 0, 255), 250);
+  // cleanup();
 
-  whiteSquares();
-  cleanup();
+  // loopSmiles();
+  // cleanup();
 
-  makeFireAnimation();
-  cleanup();
+  // whiteSquares();
+  // cleanup();
 
-  scrollText("BURNING MAN '19", textMatrix->Color(0, 0, 255));
+  // makeFireAnimation();
+  // cleanup();
+
+  // scrollText("BURNING MAN '19", textMatrix->Color(0, 0, 255));
   //delay(5 * 1000);
   //  colorWipeBottomUp(matrix, matrix->Color(226, 136, 34), 25);
   //  delay(5 * 1000);
