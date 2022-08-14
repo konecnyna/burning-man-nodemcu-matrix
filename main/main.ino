@@ -2,7 +2,7 @@
 #include <Adafruit_GFX.h>
 #include <Adafruit_NeoMatrix.h>
 #include <Adafruit_NeoPixel.h>
-#include "animations.h"
+#include "text.h"
 
 #define PIN D8
 #define BRIGHTNESS 5
@@ -21,5 +21,50 @@ void setup() {
 }
 
 void loop() {
-  startBm2019(matrix);
+  start(matrix);
+}
+
+void start(Adafruit_NeoMatrix *matrix) {
+  // pingpongImage(eggplant_animate, 10, decay);
+  // pingpongImage(eggplant_animate, 15, noDecay);
+  // cleanup();
+  
+  scrollText(matrix, "FUCK YOUR BURN", matrix->Color(255, 0, 255));
+//  display_resolution();
+
+
+  // displayMatrix(bm);
+  // cleanup();
+
+  // panImage(heart);
+  // cleanup();
+
+  // displayCheckers();
+  // cleanup();
+
+  // circles();
+  // cleanup();
+
+  // squares();
+  // cleanup();
+
+  // rainbow(5, 7);
+  // cleanup();
+
+  // theaterChase(strip.Color(255, 0, 255), 250);
+  // cleanup();
+
+  // loopSmiles();
+  // cleanup();
+
+  // whiteSquares();
+  // cleanup();
+
+  // makeFireAnimation();
+  // cleanup();
+
+  // scrollText("BURNING MAN '19", textMatrix->Color(0, 0, 255));
+  //delay(5 * 1000);
+  //  colorWipeBottomUp(matrix, matrix->Color(226, 136, 34), 25);
+  //  delay(5 * 1000);
 }
