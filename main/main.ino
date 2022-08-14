@@ -7,11 +7,7 @@
 //  Models
 #include "./models/rgb.h"
 #include "./models/MatrixImage.h"
-// Images
-#include "./images/EggplantImage.h"
 // Classes
-#include "Text.h"
-#include "Image.h"
 #include "Scenes.h"
 
 
@@ -34,5 +30,7 @@ void setup() {
 }
 
 void loop() {
+  Serial.println("start lewp");
   startScenes(matrix);
+  Serial.println("end lewp");
 }

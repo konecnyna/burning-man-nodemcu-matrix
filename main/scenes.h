@@ -1,9 +1,17 @@
+// Classes
+#include "Text.h"
+#include "Image.h"
+
+// Images
+#include "./images/EggplantImage.h"
+#include "./images/Heart.h"
+
 void startScenes(Adafruit_NeoMatrix *matrix)
 {
   matrix->clear();
 
-  drawImage(matrix, fire2);
-  delay(10000);
+  // drawImage(matrix, heart);
+  // delay(10000);
   // pingpongImage(eggplant_animate, 10, decay);
   // pingpongImage(eggplant_animate, 15, noDecay);
   // cleanup();
@@ -14,8 +22,8 @@ void startScenes(Adafruit_NeoMatrix *matrix)
   // displayMatrix(bm);
   // cleanup();
 
-  // panImage(heart);
-  // cleanup();
+  panImageUp(matrix, heart, 10);
+  matrix->clear();
 
   // displayCheckers();
   // cleanup();
