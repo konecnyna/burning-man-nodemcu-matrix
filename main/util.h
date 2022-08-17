@@ -42,57 +42,6 @@ RGB colors[] = {
   {0, 255, 0}
 };
 
-
-// for a serpentine raster int pos;
-int getLEDpos(int row, int col) {
-  int MATRIX_WIDTH = mw;
-
-  int pos;
-  if (row & 0x01) {
-    // Odd rows run backwards
-    int reverseX = (MATRIX_WIDTH - 1) - col;
-    pos = (row * MATRIX_WIDTH) + reverseX;
-  } else {
-    // Even rows run forwards
-    pos = (row * MATRIX_WIDTH) + col;
-  }
-  return pos;
-}
-
-
-
-void displayMatrix(MatrixImage matrixImage) {
-  for (int row = 0; row < mh; row++) {
-    for (int column = 0; column < mw; column++) {
-      int colorIndex = matrixImage.image[row][column];
-
-      if (matrixImage.clearScreen && colorIndex == 0) {
-        Serial.println("Skipping pixel draw!");
-        continue;
-      }
-
-      RGB color = matrixImage.colors[colorIndex];
-      int pixel = getLEDpos(row, column);
-      strip.setPixelColor(pixel, strip.Color(color.r, color.g, color.b));
-    }
-
-  }
-  strip.show();
-  delay(matrixImage.delayTime);
-}
-
-void drawMatrix(MatrixImage matrixImage) {
-  for (int row = 0; row < mh; row++) {
-    for (int column = 0; column < mw; column++) {
-      int colorIndex = matrixImage.image[row][column];
-      RGB color = matrixImage.colors[colorIndex];
-      int pixel = getLEDpos(row, column);
-      strip.setPixelColor(pixel, strip.Color(color.r, color.g, color.b));
-    }
-  }  
-}
-
-
 // Rainbow cycle along whole strip. Pass delay time (in ms) between frames.
 void rainbow(int wait, int loops) {  
   while(loops-- > 0){
@@ -182,20 +131,6 @@ void shiftLoopArray(int matrix[16][8]) {
 }
 
 
-uint16_t myRemapFn(uint16_t row, uint16_t col) {
-  int MATRIX_WIDTH = mw;
-
-  int pos;
-  if (row & 0x01) {
-    // Odd rows run backwards
-    int reverseX = (MATRIX_WIDTH - 1) - col;
-    pos = (row * MATRIX_WIDTH) + reverseX;
-  } else {
-    // Even rows run forwards
-    pos = (row * MATRIX_WIDTH) + col;
-  }
-  return pos;  
-}
 
 void mirrorMatrix(int matrix[][8], int height, int width) {
   int rowCopy;

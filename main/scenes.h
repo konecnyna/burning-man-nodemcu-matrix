@@ -1,29 +1,37 @@
 // Classes
 #include "Text.h"
 #include "Image.h"
+#include "util.h"
 
 // Images
 #include "./images/EggplantImage.h"
 #include "./images/Heart.h"
 
+void cleanup() {
+  matrix->clear();
+  strip.clear();
+}
+
 void startScenes(Adafruit_NeoMatrix *matrix)
 {
-  matrix->clear();
+  cleanup();
 
-  // drawImage(matrix, heart);
-  // delay(10000);
+  drawImage(matrix, fire2);
+  delay(1000);
+  cleanup();
+  
+
   // pingpongImage(eggplant_animate, 10, decay);
   // pingpongImage(eggplant_animate, 15, noDecay);
   // cleanup();
 
-  // scrollText(matrix, "FUCK YOUR BURN", matrix->Color(255, 0, 255));
-  //  display_resolution();
-
-  // displayMatrix(bm);
-  // cleanup();
-
-  panImageUp(matrix, heart, 10);
-  matrix->clear();
+  scrollText(matrix, "FUCK YOUR BURN :)", matrix->Color(255, 0, 255));
+   
+  
+  //panImageUp(matrix, heart, 10);
+  drawImage(matrix, heart);
+  delay(1000);
+  cleanup();
 
   // displayCheckers();
   // cleanup();
@@ -38,6 +46,7 @@ void startScenes(Adafruit_NeoMatrix *matrix)
   // cleanup();
 
   // theaterChase(strip.Color(255, 0, 255), 250);
+  // theaterChaseRainbow(50);
   // cleanup();
 
   // loopSmiles();
@@ -49,7 +58,7 @@ void startScenes(Adafruit_NeoMatrix *matrix)
   // makeFireAnimation();
   // cleanup();
 
-  // scrollText("BURNING MAN '19", textMatrix->Color(0, 0, 255));
+  //scrollText(matrix, "BURNING MAN '22", matrix->Color(0, 0, 255));
   // delay(5 * 1000);
   //  colorWipeBottomUp(matrix, matrix->Color(226, 136, 34), 25);
   //  delay(5 * 1000);

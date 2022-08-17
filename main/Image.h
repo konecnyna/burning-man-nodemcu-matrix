@@ -30,13 +30,13 @@ void shiftLoopArray(int matrix[44][11]) {
   } 
 }
 
-
+// This is broken!
 void panImageUp(Adafruit_NeoMatrix *matrix, MatrixImage image, int loops) {
   int i = matrix->width() * loops;
   for (i; i >= 0; i--) {
-    drawImage(matrix, image);
+    //drawImage(matrix, image);
     shiftLoopArray(image.pixels);
-    delay(image.delayTime);
+    delay(10);
   }
 }
 
