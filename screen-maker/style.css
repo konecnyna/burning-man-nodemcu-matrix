@@ -78,6 +78,6 @@ ul {
 }
 
 li {
-  display: list-item;
   text-align: -webkit-match-parent;
+  display: inline-block;
 }

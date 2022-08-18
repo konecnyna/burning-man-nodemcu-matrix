@@ -59,7 +59,7 @@ function exportJson() {
       matrix.push(row)
       row = [];
     }
-    const pixelColor = child.style.backgroundColor || defaultColor    
+    const pixelColor = child.style.backgroundColor || defaultColor
     row.push(pixelColor)
   })
 
@@ -68,34 +68,39 @@ function exportJson() {
   copy(json)
 }
 
-function colorChange(event) {
-  globalColor  = event.target.value;
-  const span = document.createElement("li");
-  span.setAttribute("color", globalColor);
-  span.onclick = (event) => {
-    globalColor = span.getAttribute("color");        
+function addColor(newColor) {
+  const li = document.createElement("li");
+  li.setAttribute("color", newColor);
+  li.onclick = () => {
+    globalColor = li.getAttribute("color");
+    color.value = globalColor;
   }
-  span.style.height = "24px"
-  span.style.width = "24px"
-  span.style.backgroundColor = globalColor;
-  colorsDiv.appendChild(span);
+  li.style.height = "24px"
+  li.style.width = "24px"
+  li.style.backgroundColor = newColor;
+  colorsDiv.appendChild(li);
 }
 
 async function drawArray() {
   const pixels = [...container.children];
-  
-
   const data = JSON.parse(textArea.value);
   const flatArray = data.reduce((acc, val) => acc.concat(...val));
-  pixels.forEach((pixel,idx) => {
+  pixels.forEach((pixel, idx) => {
     pixel.style.backgroundColor = flatArray[idx];
   })
 }
 
+
+addColor("#FF0000")
+addColor("#00FF00")
+addColor("#0000FF")
+
 resetBtn.addEventListener('click', reset)
 exprotBtn.addEventListener('click', exportJson)
 drawBtn.addEventListener('click', drawArray)
-color.addEventListener('change', colorChange);
+color.addEventListener('change', function(event) {
+  addColor(event.target.value)
+});
 populate(rows, columns)
 
 
