@@ -1,23 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>RGB kewl grid</title>
 </head>
+
 <body>
     <div class="navbar">
         <button class="btn">Reset</button>
-        <input type="color" value="#00eeff" class="color">        
-        <button class="btn" id="export">Export</button>
-    </div>
-    <div class="container">
+        <input type="color" value="#00eeff" class="color">
+        <button class="btn" id="export">Copy</button>
     </div>
 
-    <textarea id="text" name="text" rows="12" cols="50"></textarea>    
+    <ul id="colors">
+    </ul>
+
+    <div class="row">
+        <div class="column">
+            <div class="container">
+            </div>
+        </div>
+        <div class="column" style="margin-left: 32px;">
+            <textarea id="text" name="text" rows="25" cols="50"></textarea>
+            <button class="btn" id="drawBtn">Draw</button>
+        </div>
+    </div>
+
+
+    <input type="text" value="Hello World" id="myInput" style="visibility: hidden;">
+    <script src="screens.js"></script>
     <script src="main.js"></script>
 
 </body>
+
 </html>

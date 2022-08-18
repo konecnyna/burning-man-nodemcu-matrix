@@ -61,3 +61,23 @@ input {
   background-color: rgb(61, 61, 61);
   border-radius: 2px;
 }
+
+/* https://www.w3schools.com/howto/howto_css_two_columns.asp */
+.row {
+  display: flex;
+}
+
+.column {
+  flex: 50%;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  display: list-item;
+  text-align: -webkit-match-parent;
+}

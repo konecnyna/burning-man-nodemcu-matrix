@@ -3,12 +3,15 @@ const rows = 44;
 const columns = 11;
 const color = document.querySelector('.color')
 const resetBtn = document.querySelector('.btn')
+const drawBtn = document.querySelector('#drawBtn')
 const exprotBtn = document.querySelector('#export')
+const textArea = document.getElementById("text")
+const colorsDiv = document.getElementById("colors")
 
+let globalColor = document.querySelector('.color').value
 let draw = false
 
 function populate(rows, columns) {
-
   container.style.setProperty('--columns', columns)
   container.style.setProperty('--rows', rows)
   for (let i = 0; i < (rows * columns); i++) {
@@ -17,10 +20,10 @@ function populate(rows, columns) {
 
     div.addEventListener('mouseover', function () {
       if (!draw) { return }
-      div.style.backgroundColor = color.value
+      div.style.backgroundColor = globalColor
     })
     div.addEventListener('mousedown', function () {
-      div.style.backgroundColor = color.value
+      div.style.backgroundColor = globalColor
     })
 
     container.appendChild(div)
@@ -34,35 +37,69 @@ window.addEventListener("mouseup", function () {
   draw = false
 })
 
+function copy(text) {
+  var copyText = document.getElementById("myInput");
+  copyText.value = text;
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+}
+
 function reset() {
   container.innerHTML = ''
   populate(rows, columns)
 }
 
 function exportJson() {
-  const data = [...container.children];
-  const colors = [...new Set(data.map(item => item.style.backgroundColor || 0))]
-
+  const defaultColor = "rgb(0,0,0)";
   const matrix = [];
   let row = [];
-  data.forEach((child, index) => {
+  [...container.children].forEach((child, index) => {
     if (index % 11) {
       matrix.push(row)
       row = [];
     }
-    const pixelColor = child.style.backgroundColor
-    row.push(colors.find((color,index) => {
-      if (color === pixelColor) {
-        return index;
-      }
-      return index
-    }))
+    const pixelColor = child.style.backgroundColor || defaultColor    
+    row.push(pixelColor)
   })
 
+  const json = JSON.stringify(matrix);
+  console.log(json);
+  copy(json)
+}
+
+function colorChange(event) {
+  globalColor  = event.target.value;
+  const span = document.createElement("li");
+  span.setAttribute("color", globalColor);
+  span.onclick = (event) => {
+    globalColor = span.getAttribute("color");        
+  }
+  span.style.height = "24px"
+  span.style.width = "24px"
+  span.style.backgroundColor = globalColor;
+  colorsDiv.appendChild(span);
+}
+
+async function drawArray() {
+  const pixels = [...container.children];
   
-  document.getElementById("text").value = JSON.stringify(matrix, null, 2);
+
+  const data = JSON.parse(textArea.value);
+  const flatArray = data.reduce((acc, val) => acc.concat(...val));
+  pixels.forEach((pixel,idx) => {
+    pixel.style.backgroundColor = flatArray[idx];
+  })
 }
 
 resetBtn.addEventListener('click', reset)
 exprotBtn.addEventListener('click', exportJson)
+drawBtn.addEventListener('click', drawArray)
+color.addEventListener('change', colorChange);
 populate(rows, columns)
+
+
+
+
+
+
