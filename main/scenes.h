@@ -1,4 +1,5 @@
 // Classes
+#include "./models/Colors.h"
 #include "Text.h"
 #include "Image.h"
 #include "util.h"
@@ -14,24 +15,24 @@ void cleanup() {
 
 void startScenes(Adafruit_NeoMatrix *matrix)
 {
-  cleanup();
+  // cleanup();
 
-  drawImage(matrix, fire2);
-  delay(1000);
-  cleanup();
+  // drawImage(matrix, fire2);
+  // delay(1000);
+  // cleanup();
   
 
   // pingpongImage(eggplant_animate, 10, decay);
   // pingpongImage(eggplant_animate, 15, noDecay);
   // cleanup();
 
-  scrollText(matrix, "FUCK YOUR BURN :)", matrix->Color(255, 0, 255));
+  scrollText(matrix, "FUCK YOUR BURN :)", green());
    
   
   //panImageUp(matrix, heart, 10);
-  drawImage(matrix, heart);
-  delay(1000);
-  cleanup();
+  // drawImage(matrix, heart);
+  // delay(1000);
+  // cleanup();
 
   // displayCheckers();
   // cleanup();

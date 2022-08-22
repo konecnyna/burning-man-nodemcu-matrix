@@ -8,6 +8,7 @@ void initScrollTextTopToBottom(Adafruit_NeoMatrix *matrix, int color) {
   matrix->clear();
   matrix->setTextWrap(false);
   matrix->setTextSize(1);
+  matrix->setTextColor(color);
   matrix->setRotation(0);
 }
 
@@ -25,7 +26,6 @@ void scrollText(Adafruit_NeoMatrix *matrix, String textToDisplay, int color) {
   int scrollLength = textToDisplay.length() + (screenWidth * 1.5);
   
   initScrollTextTopToBottom(matrix, color);
-  
   for (int8_t index = scrollLength; index > scrollLength * -1 ; index--) {
     displayText(matrix, index, textToDisplay, color); 
     delay(50);
