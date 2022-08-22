@@ -266,10 +266,10 @@ void fixdrawRGBBitmap(int16_t x, int16_t y, const uint16_t *bitmap, int16_t w, i
 // Fill the screen with multiple levels of white to gauge the quality
 void display_four_white() {
   matrix->clear();
-  matrix->fillRect(0, 0, mw, mh, LED_WHITE_HIGH);
-  matrix->drawRect(1, 1, mw - 2, mh - 2, LED_WHITE_MEDIUM);
-  matrix->drawRect(2, 2, mw - 4, mh - 4, LED_WHITE_LOW);
-  matrix->drawRect(3, 3, mw - 6, mh - 6, LED_WHITE_VERYLOW);
+  matrix->fillRect(0, 0, matrixWidth, matrixHeight, LED_WHITE_HIGH);
+  matrix->drawRect(1, 1, matrixWidth - 2, matrixHeight - 2, LED_WHITE_MEDIUM);
+  matrix->drawRect(2, 2, matrixWidth - 4, matrixHeight - 4, LED_WHITE_LOW);
+  matrix->drawRect(3, 3, matrixWidth - 6, matrixHeight - 6, LED_WHITE_VERYLOW);
   matrix->show();
 }
 
@@ -282,9 +282,9 @@ void display_bitmap(uint8_t bmp_num, uint16_t color) {
   matrix->fillRect(bmx, bmy, bmx + 8, bmy + 8, LED_BLACK);
   matrix->drawBitmap(bmx, bmy, mono_bmp[bmp_num], 8, 8, color);
   bmx += 8;
-  if (bmx >= mw) bmx = 0;
+  if (bmx >= matrixWidth) bmx = 0;
   if (!bmx) bmy += 8;
-  if (bmy >= mh) bmy = 0;
+  if (bmy >= matrixHeight) bmy = 0;
   matrix->show();
 }
 
@@ -293,9 +293,9 @@ void display_rgbBitmap(uint8_t bmp_num) {
 
   fixdrawRGBBitmap(bmx, bmy, RGB_bmp[bmp_num], 8, 8);
   bmx += 8;
-  if (bmx >= mw) bmx = 0;
+  if (bmx >= matrixWidth) bmx = 0;
   if (!bmx) bmy += 8;
-  if (bmy >= mh) bmy = 0;
+  if (bmy >= matrixHeight) bmy = 0;
   matrix->show();
 }
 
@@ -303,46 +303,46 @@ void display_lines() {
   matrix->clear();
 
   // 4 levels of crossing red lines.
-  matrix->drawLine(0, mh / 2 - 2, mw - 1, 2, LED_RED_VERYLOW);
-  matrix->drawLine(0, mh / 2 - 1, mw - 1, 3, LED_RED_LOW);
-  matrix->drawLine(0, mh / 2,   mw - 1, mh / 2, LED_RED_MEDIUM);
-  matrix->drawLine(0, mh / 2 + 1, mw - 1, mh / 2 + 1, LED_RED_HIGH);
+  matrix->drawLine(0, matrixHeight / 2 - 2, matrixWidth - 1, 2, LED_RED_VERYLOW);
+  matrix->drawLine(0, matrixHeight / 2 - 1, matrixWidth - 1, 3, LED_RED_LOW);
+  matrix->drawLine(0, matrixHeight / 2,   matrixWidth - 1, matrixHeight / 2, LED_RED_MEDIUM);
+  matrix->drawLine(0, matrixHeight / 2 + 1, matrixWidth - 1, matrixHeight / 2 + 1, LED_RED_HIGH);
 
   // 4 levels of crossing green lines.
-  matrix->drawLine(mw / 2 - 2, 0, mw / 2 - 2, mh - 1, LED_GREEN_VERYLOW);
-  matrix->drawLine(mw / 2 - 1, 0, mw / 2 - 1, mh - 1, LED_GREEN_LOW);
-  matrix->drawLine(mw / 2 + 0, 0, mw / 2 + 0, mh - 1, LED_GREEN_MEDIUM);
-  matrix->drawLine(mw / 2 + 1, 0, mw / 2 + 1, mh - 1, LED_GREEN_HIGH);
+  matrix->drawLine(matrixWidth / 2 - 2, 0, matrixWidth / 2 - 2, matrixHeight - 1, LED_GREEN_VERYLOW);
+  matrix->drawLine(matrixWidth / 2 - 1, 0, matrixWidth / 2 - 1, matrixHeight - 1, LED_GREEN_LOW);
+  matrix->drawLine(matrixWidth / 2 + 0, 0, matrixWidth / 2 + 0, matrixHeight - 1, LED_GREEN_MEDIUM);
+  matrix->drawLine(matrixWidth / 2 + 1, 0, matrixWidth / 2 + 1, matrixHeight - 1, LED_GREEN_HIGH);
 
   // Diagonal blue line.
-  matrix->drawLine(0, 0, mw - 1, mh - 1, LED_BLUE_HIGH);
-  matrix->drawLine(0, mh - 1, mw - 1, 0, LED_ORANGE_MEDIUM);
+  matrix->drawLine(0, 0, matrixWidth - 1, matrixHeight - 1, LED_BLUE_HIGH);
+  matrix->drawLine(0, matrixHeight - 1, matrixWidth - 1, 0, LED_ORANGE_MEDIUM);
   matrix->show();
 }
 
 void display_boxes() {
   matrix->clear();
-  matrix->drawRect(0, 0, mw, mh, LED_BLUE_HIGH);
-  matrix->drawRect(1, 1, mw - 2, mh - 2, LED_GREEN_MEDIUM);
-  matrix->fillRect(2, 2, mw - 4, mh - 4, LED_RED_HIGH);
-  matrix->fillRect(3, 3, mw - 6, mh - 6, LED_ORANGE_MEDIUM);
+  matrix->drawRect(0, 0, matrixWidth, matrixHeight, LED_BLUE_HIGH);
+  matrix->drawRect(1, 1, matrixWidth - 2, matrixHeight - 2, LED_GREEN_MEDIUM);
+  matrix->fillRect(2, 2, matrixWidth - 4, matrixHeight - 4, LED_RED_HIGH);
+  matrix->fillRect(3, 3, matrixWidth - 6, matrixHeight - 6, LED_ORANGE_MEDIUM);
   matrix->show();
 }
 
 void display_circles() {
   matrix->clear();
-  matrix->drawCircle(mw / 2, mh / 2, 2, LED_RED_MEDIUM);
-  matrix->drawCircle(mw / 2 - 1 - min(mw, mh) / 8, mh / 2 - 1 - min(mw, mh) / 8, min(mw, mh) / 4, LED_BLUE_HIGH);
-  matrix->drawCircle(mw / 2 + 1 + min(mw, mh) / 8, mh / 2 + 1 + min(mw, mh) / 8, min(mw, mh) / 4 - 1, LED_ORANGE_MEDIUM);
-  matrix->drawCircle(1, mh - 2, 1, LED_GREEN_LOW);
-  matrix->drawCircle(mw - 2, 1, 1, LED_GREEN_HIGH);
-  if (min(mw, mh) > 12) matrix->drawCircle(mw / 2 - 1, mh / 2 - 1, min(mh / 2 - 1, mw / 2 - 1), LED_CYAN_HIGH);
+  matrix->drawCircle(matrixWidth / 2, matrixHeight / 2, 2, LED_RED_MEDIUM);
+  matrix->drawCircle(matrixWidth / 2 - 1 - min(matrixWidth, matrixHeight) / 8, matrixHeight / 2 - 1 - min(matrixWidth, matrixHeight) / 8, min(matrixWidth, matrixHeight) / 4, LED_BLUE_HIGH);
+  matrix->drawCircle(matrixWidth / 2 + 1 + min(matrixWidth, matrixHeight) / 8, matrixHeight / 2 + 1 + min(matrixWidth, matrixHeight) / 8, min(matrixWidth, matrixHeight) / 4 - 1, LED_ORANGE_MEDIUM);
+  matrix->drawCircle(1, matrixHeight - 2, 1, LED_GREEN_LOW);
+  matrix->drawCircle(matrixWidth - 2, 1, 1, LED_GREEN_HIGH);
+  if (min(matrixWidth, matrixHeight) > 12) matrix->drawCircle(matrixWidth / 2 - 1, matrixHeight / 2 - 1, min(matrixHeight / 2 - 1, matrixWidth / 2 - 1), LED_CYAN_HIGH);
   matrix->show();
 }
 
 void display_resolution() {
   // not wide enough;
-  if (mw < 16) return;
+  if (matrixWidth < 16) return;
   matrix->clear();
   // Font is 5x7, if display is too small
   // 8 can only display 1 char
@@ -351,32 +351,32 @@ void display_resolution() {
   // 32 can display 5 chars
   matrix->setCursor(0, 0);
   matrix->setTextColor(matrix->Color(255, 0, 0));
-  if (mw > 10) matrix->print(mw / 10);
+  if (matrixWidth > 10) matrix->print(matrixWidth / 10);
   matrix->setTextColor(matrix->Color(255, 128, 0));
-  matrix->print(mw % 10);
+  matrix->print(matrixWidth % 10);
   matrix->setTextColor(matrix->Color(0, 255, 0));
   matrix->print('x');
   // not wide enough to print 5 chars, go to next line
-  if (mw < 25) {
-    if (mh == 13) matrix->setCursor(6, 7);
-    else if (mh >= 13) {
-      matrix->setCursor(mw - 11, 8);
+  if (matrixWidth < 25) {
+    if (matrixHeight == 13) matrix->setCursor(6, 7);
+    else if (matrixHeight >= 13) {
+      matrix->setCursor(matrixWidth - 11, 8);
     } else {
       matrix->show();
       delay(2000);
       matrix->clear();
-      matrix->setCursor(mw - 11, 0);
+      matrix->setCursor(matrixWidth - 11, 0);
     }
   }
   matrix->setTextColor(matrix->Color(0, 255, 128));
-  matrix->print(mh / 10);
+  matrix->print(matrixHeight / 10);
   matrix->setTextColor(matrix->Color(0, 128, 255));
-  matrix->print(mh % 10);
+  matrix->print(matrixHeight % 10);
   // enough room for a 2nd line
-  if (mw > 25 && mh > 14 || mh > 16) {
-    matrix->setCursor(0, mh - 7);
+  if (matrixWidth > 25 && matrixHeight > 14 || matrixHeight > 16) {
+    matrix->setCursor(0, matrixHeight - 7);
     matrix->setTextColor(matrix->Color(0, 255, 255));
-    if (mw > 16) matrix->print('*');
+    if (matrixWidth > 16) matrix->print('*');
     matrix->setTextColor(matrix->Color(255, 0, 0));
     matrix->print('R');
     matrix->setTextColor(matrix->Color(0, 255, 0));
@@ -400,8 +400,8 @@ void display_scrollText() {
     matrix->setCursor(x, 0);
     matrix->setTextColor(LED_GREEN_HIGH);
     matrix->print("Hello");
-    if (mh > 11) {
-      matrix->setCursor(-20 - x, mh - 7);
+    if (matrixHeight > 11) {
+      matrix->setCursor(-20 - x, matrixHeight - 7);
       matrix->setTextColor(LED_ORANGE_HIGH);
       matrix->print("World");
     }
@@ -420,8 +420,8 @@ void display_scrollText() {
 void display_panOrBounceBitmap (uint8_t bitmapSize) {
   // keep integer math, deal with values 16 times too big
   // start by showing upper left of big bitmap or centering if the display is big
-  int16_t xf = max(0, (mw - bitmapSize) / 2) << 4;
-  int16_t yf = max(0, (mh - bitmapSize) / 2) << 4;
+  int16_t xf = max(0, (matrixWidth - bitmapSize) / 2) << 4;
+  int16_t yf = max(0, (matrixHeight - bitmapSize) / 2) << 4;
   // scroll speed in 1/16th
   int16_t xfc = 6;
   int16_t yfc = 3;
@@ -446,35 +446,35 @@ void display_panOrBounceBitmap (uint8_t bitmapSize) {
 
     // Only pan if the display size is smaller than the pixmap
     // but not if the difference is too small or it'll look bad.
-    if (bitmapSize - mw > 2) {
-      if (mw > 9) xf += xfc * xfdir;
+    if (bitmapSize - matrixWidth > 2) {
+      if (matrixWidth > 9) xf += xfc * xfdir;
       if (xf >= 0)                      {
         xfdir = -1;
         updDir = true ;
       };
       // we don't go negative past right corner, go back positive
-      if (xf <= ((mw - bitmapSize) << 4)) {
+      if (xf <= ((matrixWidth - bitmapSize) << 4)) {
         xfdir = 1;
         updDir = true ;
       };
     }
-    if (bitmapSize - mh > 2) {
+    if (bitmapSize - matrixHeight > 2) {
       yf += yfc * yfdir;
       // we shouldn't display past left corner, reverse direction.
       if (yf >= 0)                      {
         yfdir = -1;
         updDir = true ;
       };
-      if (yf <= ((mh - bitmapSize) << 4)) {
+      if (yf <= ((matrixHeight - bitmapSize) << 4)) {
         yfdir = 1;
         updDir = true ;
       };
     }
     // only bounce a pixmap if it's smaller than the display size
-    if (mw > bitmapSize) {
+    if (matrixWidth > bitmapSize) {
       xf += xfc * xfdir;
       // Deal with bouncing off the 'walls'
-      if (xf >= (mw - bitmapSize) << 4) {
+      if (xf >= (matrixWidth - bitmapSize) << 4) {
         xfdir = -1;
         updDir = true ;
       };
@@ -483,9 +483,9 @@ void display_panOrBounceBitmap (uint8_t bitmapSize) {
         updDir = true ;
       };
     }
-    if (mh > bitmapSize) {
+    if (matrixHeight > bitmapSize) {
       yf += yfc * yfdir;
-      if (yf >= (mh - bitmapSize) << 4) {
+      if (yf >= (matrixHeight - bitmapSize) << 4) {
         yfdir = -1;
         updDir = true ;
       };
@@ -528,7 +528,7 @@ void loopSmiles() {
   for (uint8_t i = 2; i <= 4; i++) {
     display_bitmap(i, bmpcolor[i - 2]);
     // If more than one pixmap displayed per screen, display more quickly.
-    delay(mw > 8 ? 500 : 1500);
+    delay(matrixWidth > 8 ? 500 : 1500);
   }
 }
 
@@ -546,17 +546,17 @@ void squares() {
 void whiteSquares() {
   for (int i = 0; i < 6; i++) {
     matrix->clear();
-    //    matrix->fillRect(0, 0, mw, mh, LED_WHITE_HIGH);
-    matrix->drawRect(i, i, mw - i, mh - i, LED_WHITE_MEDIUM);
-    //    matrix->drawRect(2, 2, mw - 4, mh - 4, LED_WHITE_LOW);
-    //    matrix->drawRect(3, 3, mw - 6, mh - 6, LED_WHITE_VERYLOW);
+    //    matrix->fillRect(0, 0, matrixWidth, matrixHeight, LED_WHITE_HIGH);
+    matrix->drawRect(i, i, matrixWidth - i, matrixHeight - i, LED_WHITE_MEDIUM);
+    //    matrix->drawRect(2, 2, matrixWidth - 4, matrixHeight - 4, LED_WHITE_LOW);
+    //    matrix->drawRect(3, 3, matrixWidth - 6, matrixHeight - 6, LED_WHITE_VERYLOW);
     matrix->show();
     delay(500);
   }
 
   for (int i = 6; i >= 0; i--) {
     matrix->clear();
-    matrix->drawRect(i, i, mw - i, mh - i, LED_WHITE_MEDIUM);
+    matrix->drawRect(i, i, matrixWidth - i, matrixHeight - i, LED_WHITE_MEDIUM);
     matrix->show();
     delay(500);
   }
