@@ -8,10 +8,8 @@
 #include "./models/rgb.h"
 #include "./models/MatrixImage.h"
 
-
-
 #define PIN D8
-#define BRIGHTNESS 255
+#define BRIGHTNESS 10
 
 int matrixWidth = 44;
 int matrixHeight = 11;

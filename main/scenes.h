@@ -8,6 +8,7 @@
 // Images
 #include "./images/EggplantImage.h"
 #include "./images/Heart.h"
+#include "./images/Test.h"
 
 void cleanup()
 {
@@ -19,87 +20,48 @@ void startScenes(Adafruit_NeoMatrix *matrix)
 {
   // cleanup();
 
-  // drawImage(matrix, fire2);
-  // delay(1000);
-  // cleanup();
-
   // pingpongImage(eggplant_animate, 10, decay);
   // pingpongImage(eggplant_animate, 15, noDecay);
   // cleanup();
 
-  // scrollText(matrix, "FUCK YOUR BURN :)", green());
-  //scrollText(matrix, "WAKING DREAMS '22", purple());
+  scrollText(matrix, "FUCK YOUR BURN =)", green());
+  scrollText(matrix, "WAKING DREAMS 2022", LED_WHITE_HIGH);
 
+  // delay(5 * 1000);
   // panImageUp(matrix, heart, 10);
-  //  drawImage(matrix, heart);
-  //  delay(1000);
-  //  cleanup();
+  drawImage(matrix, heart);
+  delay(5 * 1000);
+  cleanup();
 
-  // displayCheckers();
-  // cleanup();
+  drawImage(matrix, eggplant);
+  delay(5 * 1000);
+  cleanup();
 
-  // circles();
-  // cleanup();
+  displayCheckers();
+  cleanup();
 
-  // squares();
-  // cleanup();
+  circles();
+  cleanup();
 
-  // rainbow(5, 7);
-  // cleanup();
+  squares();
+  cleanup();
 
-  // theaterChase(strip.Color(255, 0, 255), 250);
-  // theaterChaseRainbow(50);
-  // cleanup();
+  rainbow(5, 7);
+  cleanup();
 
-  // loopSmiles();
-  // cleanup();
+  theaterChase(strip.Color(255, 0, 255), 250);
+  theaterChaseRainbow(50);
+  cleanup();
 
-  // whiteSquares();
-  // cleanup();
+  loopSmiles();
+  cleanup();
+
+  whiteSquares();
+  cleanup();
 
   // makeFireAnimation();
   // cleanup();
 
-  //colorWipeBottomUp(matrix, matrix->Color(226, 136, 34), 25);
-  //delay(5 * 1000);
-  // matrix->fillScreen(purple());
-  // matrix->show();
-  // delay(3 * 1000);
-  // cleanup();
-
-  // matrix->fillScreen(red());
-  // matrix->show();
-  // delay(3 * 1000);
-  // cleanup();
-
-//  for (int i = 0; i < 3; i++) {
-//    for (int j = 0; j < 254; j++) {
-//      if (i == 0) {
-//        matrix->fillScreen(matrix->Color(j, 0, 0));  
-//        Serial.print("R: ");
-//        
-//      } else if (i == 1) {
-//        matrix->fillScreen(matrix->Color(0, j, 0));  
-//        Serial.print("G: ");
-//      } else {
-//        matrix->fillScreen(matrix->Color(0, 0, j));  
-//        Serial.print("B: ");
-//      }
-//      
-//      Serial.print(j);
-//      Serial.println();
-//      matrix->show();
-//      delay(100);
-//    }
-//    
-//  }
-
-  matrix->fillScreen(matrix->Color(255, 0, 0));  
+  colorWipeBottomUp(matrix, matrix->Color(226, 136, 34), 25);
   delay(5 * 1000);
-  cleanup();
-
-  // matrix->fillScreen(green());
-  // matrix->show();
-  // delay(3 * 1000);
-  // cleanup();
 }
