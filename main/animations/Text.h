@@ -22,17 +22,17 @@ void displayText(Adafruit_NeoMatrix *matrix, int index, String textToDisplay, in
   matrix->show();
 }
 
-void scrollText(Adafruit_NeoMatrix *matrix, String textToDisplay, int color)
+void scrollText(Adafruit_NeoMatrix *matrix, String textToDisplay, int color, int speed)
 {
   int screenWidth = matrix->width();
-  int charWidth = 6;
-  int scrollLength = textToDisplay.length() * charWidth;
+  int charWidth = 5;
+  int scrollLength = textToDisplay.length() * charWidth + 15;
 
   initScrollTextTopToBottom(matrix, color);
   for (int8_t index = scrollLength; index > scrollLength * -1; index--)
   {
     displayText(matrix, index, textToDisplay, color);
-    delay(50);
+    delay(speed);
   }
 
   matrix->clear();
