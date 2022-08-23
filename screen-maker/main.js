@@ -74,9 +74,10 @@ function exportJson() {
     if (colorIndex === -1) {
       colors.push(pixelColor)
     }
-
     row.push(colors.indexOf(pixelColor))
   })
+  // Last row.
+  matrix.push(row);
 
   console.log(matrix)
   const json = JSON.stringify({
