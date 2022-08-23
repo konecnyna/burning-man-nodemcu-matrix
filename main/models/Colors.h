@@ -27,3 +27,8 @@ uint16_t purple()
 {
   return matrix->Color(191, 85, 236);
 }
+
+uint16_t orange()
+{
+  return matrix->Color(255, 127, 0);
+}

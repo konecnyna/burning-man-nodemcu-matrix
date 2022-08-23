@@ -18,14 +18,12 @@ void cleanup()
 
 void startScenes(Adafruit_NeoMatrix *matrix)
 {
-  // cleanup();
-
-  // pingpongImage(eggplant_animate, 10, decay);
-  // pingpongImage(eggplant_animate, 15, noDecay);
-  // cleanup();
+  cleanup();
 
   scrollText(matrix, "FUCK YOUR BURN =)", green());
-  scrollText(matrix, "WAKING DREAMS 2022", LED_WHITE_HIGH);
+  scrollText(matrix, "WAKING DREAMS 2022", purple());
+  scrollText(matrix, "METAMORPHOSES 2019", orange());
+  scrollText(matrix, "I-ROBOT 2018", white());
 
   // delay(5 * 1000);
   // panImageUp(matrix, heart, 10);
