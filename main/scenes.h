@@ -35,8 +35,11 @@ void startScenes(Adafruit_NeoMatrix *matrix)
 
   // // // delay(5 * 1000);
   // // // panImageUp(matrix, heart, 10);
-  drawImage(matrix, penis);
-  delay(5 * 1000);
+  //drawImage(matrix, penis);
+  
+  pingPongHeart();
+  //animatePenis();
+  //delay(5 * 1000);
   // cleanup();
 
   // drawImage(matrix, eggplant);

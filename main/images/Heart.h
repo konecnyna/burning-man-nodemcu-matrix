@@ -47,3 +47,11 @@ const MatrixImage heart = {
     {0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0}
   }
 };
+
+
+void pingPongHeart()
+{
+  // whitespace.
+  int shiftSize = 33;
+  pingpongImage(heart, 20, shiftSize, decay);
+}
