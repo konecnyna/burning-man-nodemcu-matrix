@@ -48,6 +48,6 @@ const MatrixImage penis = {
 void animatePenis()
 {
   // whitespace.
-  int shiftSize = 26;
-  pingpongImage(penis, 6, shiftSize, decay);
+  int shiftSize = 22;
+  pingpongImage(penis, 10, shiftSize, noDecay);
 }

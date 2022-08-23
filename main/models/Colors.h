@@ -1,3 +1,4 @@
+uint16_t blank = matrix->Color(0, 0, 0);
 uint16_t red = matrix->Color(255, 0, 0);
 uint16_t green = matrix->Color(0, 255, 0);
 uint16_t white = matrix->Color(255, 255, 255);
