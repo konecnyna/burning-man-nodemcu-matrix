@@ -22,11 +22,11 @@ RGB colors[] = {
 
 
 
-void shiftUpArray(int matrix[16][8]) {
+void shiftUpArray(int matrix[44][11]) {
   int rowCopy;
-  for (int row = 0; row < 16; row++) {
-    for (int col = 0; col < 8; col++) {
-      if (row == 16 - 1) {
+  for (int row = 0; row < 44; row++) {
+    for (int col = 0; col < 11; col++) {
+      if (row == 44 - 1) {
         matrix[row][col] = 0;
       } else {
         matrix[row][col] = matrix[row + 1][col];
@@ -35,10 +35,10 @@ void shiftUpArray(int matrix[16][8]) {
   }
 }
 
-void shiftDownArray(int matrix[16][8]) {
+void shiftDownArray(int matrix[44][11]) {
   int rowCopy;
-  for (int row = 16-1; row >= 0; row--) {
-    for (int col = 0; col < 8; col++) {
+  for (int row = 44-1; row >= 0; row--) {
+    for (int col = 0; col < 11; col++) {
       if (row == 0) {
         matrix[row][col] = 0;
       } else {
@@ -48,10 +48,10 @@ void shiftDownArray(int matrix[16][8]) {
   }
 }
 
-void shiftLoopArray(int matrix[16][8]) {
+void shiftLoopArray(int matrix[44][11]) {
   int rowCopy;
-  for (int row = 0; row < 16; row++) {
-    for (int col = 0; col < 8; col++) {
+  for (int row = 0; row < 44; row++) {
+    for (int col = 0; col < 11; col++) {
       if (row == 0) {
         continue;
       }

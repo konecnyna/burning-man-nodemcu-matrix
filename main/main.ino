@@ -3,13 +3,8 @@
 #include <Adafruit_NeoMatrix.h>
 #include <Adafruit_NeoPixel.h>
 
-// These imports are dependant on each other.
-//  Models
-#include "./models/rgb.h"
-#include "./models/MatrixImage.h"
-
 #define PIN D8
-#define BRIGHTNESS 10
+#define BRIGHTNESS 5
 
 int matrixWidth = 44;
 int matrixHeight = 11;

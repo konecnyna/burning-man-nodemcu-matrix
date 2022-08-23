@@ -1,17 +1,22 @@
-// Classes
+// These imports are dependant on each other.
+//  Models
+#include "./models/rgb.h"
+#include "./models/MatrixImage.h"
 #include "./models/Colors.h"
-#include "./animations/Text.h"
-#include "Image.h"
-#include "shit.h"
+// Classes
+#include "./utils/Image.h"
 #include "./utils/MatrixUtil.h"
-
+#include "shit.h"
 // Animations
+#include "./animations/Text.h"
+#include "./animations/ColorWipe.h"
 #include "./animations/Rainbow.h"
-
+#include "./animations/ImageAnimation.h"
 // Images
 #include "./images/EggplantImage.h"
 #include "./images/Heart.h"
 #include "./images/Test.h"
+#include "./images/Penis.h"
 
 void cleanup()
 {
@@ -30,8 +35,8 @@ void startScenes(Adafruit_NeoMatrix *matrix)
 
   // // // delay(5 * 1000);
   // // // panImageUp(matrix, heart, 10);
-  // drawImage(matrix, heart);
-  // delay(5 * 1000);
+  drawImage(matrix, penis);
+  delay(5 * 1000);
   // cleanup();
 
   // drawImage(matrix, eggplant);
