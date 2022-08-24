@@ -1,27 +1,3 @@
-
-void print_array(const int *A, size_t width, size_t height) {
-  Serial.println("-------------------------------");
-  for (size_t i = 0; i < height; ++i) {
-    for (size_t j = 0; j < width; ++j) {
-      Serial.print(A[i * width + j]);
-    }
-    Serial.println("");
-  }
-  Serial.println("-------------------------------");
-}
-
-
-
-RGB colors[] = {
-  {0, 0, 0},
-  {255, 0, 255},
-  {0, 255, 0}
-};
-
-
-
-
-
 void shiftUpArray(int matrix[44][11]) {
   int rowCopy;
   for (int row = 0; row < 44; row++) {
@@ -60,18 +36,4 @@ void shiftLoopArray(int matrix[44][11]) {
       matrix[row][col] = rowCopy;
     }
   } 
-}
-
-
-
-void mirrorMatrix(int matrix[][8], int height, int width) {
-  int rowCopy;
-  for (int row = 0; row < height; row++) {
-    for (int col = 0; col < width / 2; col++) {
-      int mirrorIndex = width - 1 - col;
-      rowCopy = matrix[row][mirrorIndex];
-      matrix[row][mirrorIndex] = matrix[row][col];
-      matrix[row][col] = rowCopy;
-    }
-  }
 }

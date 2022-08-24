@@ -7,16 +7,21 @@
 #include "./utils/Image.h"
 #include "./utils/MatrixUtil.h"
 #include "shit.h"
-// Animations
+
+// // Animations
 #include "./animations/Text.h"
 #include "./animations/ColorWipe.h"
 #include "./animations/Rainbow.h"
 #include "./animations/ImageAnimation.h"
+
 // Images
-#include "./images/EggplantImage.h"
-#include "./images/Heart.h"
-#include "./images/Test.h"
+// #include "./images/EggplantImage.h"
+// #include "./images/Heart.h"
+// #include "./images/Test.h"
 #include "./images/Penis.h"
+
+
+
 
 void cleanup()
 {
@@ -26,22 +31,33 @@ void cleanup()
 
 void startScenes(Adafruit_NeoMatrix *matrix)
 {
-  // cleanup();
+  cleanup();
+  matrix->fillScreen(purple);
+  matrix->show();
+  delay(5*1000);
+  
+  animatePenis();
+  
+  Serial.println("*****************************");
+  Serial.println("Success!");
+  Serial.println("*****************************");  
+  
+  delay(5 * 1000);
 
-  // scrollText(matrix, "FUCK YOUR BURN =)", green(), 25);
+
+  // scrol  lText(matrix, "FUCK YOUR BURN =)", green(), 25);
   // scrollText(matrix, "WAKING DREAMS 2022", purple(), 25);
   // scrollText(matrix, "METAMORPHOSES 2019", orange(), 25);
   // scrollText(matrix, "I-ROBOT 2018", white(), 25);
 
-  // // // delay(5 * 1000);
   // // // panImageUp(matrix, heart, 10);
   //drawImage(matrix, penis);
   
   // pingPongHeart();
-  animatePenis();
+  //animatePenis();
 
-  matrix->fillScreen(green);
-  delay(5 * 1000);
+  // matrix->fillScreen(green);
+  // delay(5 * 1000);
   // cleanup();
 
   // drawImage(matrix, eggplant);

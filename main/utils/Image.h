@@ -1,10 +1,13 @@
 
 void drawImage(Adafruit_NeoMatrix *matrix, MatrixImage image)
 {
+  int numberOfLines = matrix->width();
+  int numberColumns = matrix->height();
+  int row, column;
 
-  for (int row = 0; row < matrix->width(); row++)
+  for (row = 0; row < numberOfLines; row++)
   {
-    for (int column = 0; column < matrix->height(); column++)
+    for (column = 0; column < numberColumns; column++)
     {
       const RGB pixelColor = image.colors[image.pixels[row][column]];
       const uint16_t matrixColor = matrix->Color(pixelColor.r, pixelColor.g, pixelColor.b);
