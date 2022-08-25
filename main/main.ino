@@ -11,7 +11,7 @@ int matrixHeight = 11;
 
 uint8_t matrixType = NEO_MATRIX_TOP + NEO_MATRIX_LEFT + NEO_MATRIX_ROWS + NEO_MATRIX_ZIGZAG;
 Adafruit_NeoMatrix *matrix = new Adafruit_NeoMatrix(matrixWidth, matrixHeight, PIN, matrixType, NEO_GRB + NEO_KHZ800);
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(matrixWidth * matrixHeight, PIN, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(matrixWidth * matrixHeight, PIN);
 
 // Classes
 #include "Scenes.h"

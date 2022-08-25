@@ -10,6 +10,7 @@
     "vector": "cpp",
     "*.tcc": "cpp",
     "deque": "cpp",
-    "string_view": "cpp"
+    "string_view": "cpp",
+    "array": "cpp"
   }
 }

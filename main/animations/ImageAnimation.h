@@ -4,7 +4,7 @@ void panImageUp(Adafruit_NeoMatrix *matrix, MatrixImage image, int loops)
   int i;
   for (i = loops; i >= 0; i--)
   {
-    drawImage(matrix, image);
+    drawImage(image);
     shiftLoopArray(image.pixels);
     delay(10);
   }
@@ -16,37 +16,40 @@ void pingpongImage(MatrixImage img, int loops, int shiftSize, int delayMs)
   {
     for (int i = shiftSize; i >= 0; i--)
     {
-      drawImage(matrix, img);
+      drawImage(img);
       shiftUpArray(img.pixels);
       delay(delayMs);
     }
 
     for (int i = shiftSize; i >= 0; i--)
     {
-      drawImage(matrix, img);
+      drawImage(img);
       shiftDownArray(img.pixels);
       delay(delayMs);
     }
   }
 }
-void pingpongImage(MatrixImage img, int loops, int shiftSize, int (*decayFn)(int))
+
+//, int (*decayFn)(int)
+void pingpongImage(MatrixImage source, int loops, int shiftSize)
 {
 
+  MatrixImage copy = source;
   while (loops-- > 0)
   {
     for (int i = shiftSize; i >= 0; i--)
     {
-      drawImage(matrix, img);
-      shiftUpArray(img.pixels);
-      delay((*decayFn)(loops));
+      drawImage(copy);
+      // shiftUpArray(copy.pixels);
+      delay(50);
     }
 
-    for (int i = shiftSize; i >= 0; i--)
-    {
-      drawImage(matrix, img);
-      shiftDownArray(img.pixels);
-      delay((*decayFn)(loops));
-    }
+    // for (int i = shiftSize; i >= 0; i--)
+    // {
+    //   drawImage(matrix, copy);
+    //   // shiftDownArray(copy.pixels);
+    //   delay(50);
+    // }
   }
 }
 
@@ -64,7 +67,7 @@ void panImage(MatrixImage mtrx)
 {
   for (int i = 100; i >= 0; i--)
   {
-    drawImage(matrix, mtrx);
+    drawImage(mtrx);
     shiftLoopArray(mtrx.pixels);
     delay(matrixWidth * 5);
   }
