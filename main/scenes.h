@@ -22,6 +22,7 @@
 #include "./images/Penis.h"
 #include "./images/Fireworks.h"
 #include "./images/Equalizer.h"
+#include "./images/Man.h"
 
 void cleanup()
 {
@@ -34,6 +35,7 @@ void startScenes(Adafruit_NeoMatrix *matrix)
   cleanup();
 
   // animateEqualizer();
+  animateMan();
   animatePenis();
 
   scrollText(matrix, "FUCK YOUR BURN =)", green, 25);
@@ -53,6 +55,8 @@ void startScenes(Adafruit_NeoMatrix *matrix)
   theaterChase(purple, 50);
   cleanup();
 
+  // animateMan();
+
   theaterChaseRainbow(50);
   cleanup();
 
@@ -68,6 +72,4 @@ void startScenes(Adafruit_NeoMatrix *matrix)
 
   animateEggplant();
   cleanup();
-
-  delay(15 * 1000);
 }

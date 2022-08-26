@@ -4,7 +4,7 @@
 #include <Adafruit_NeoPixel.h>
 
 #define PIN D8
-#define BRIGHTNESS 5
+#define BRIGHTNESS 4
 
 int matrixWidth = 44;
 int matrixHeight = 11;
@@ -34,6 +34,9 @@ void setup() {
   Serial.begin(115200);  
   setupMatrix();
   setupStrip();
+
+  mirrorMatrix(semenPixels, 25, 11);
+  mirrorMatrix(manPixels, 44, 11);
 }
 
 void loop() {

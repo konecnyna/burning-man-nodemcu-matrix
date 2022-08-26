@@ -22,7 +22,6 @@ void shiftUpArray(int matrix[44][11])
 
 void shiftDownArray(int matrix[44][11])
 {
-  int rowCopy;
   for (int row = 44 - 1; row >= 0; row--)
   {
     for (int col = 0; col < 11; col++)
@@ -53,6 +52,24 @@ void shiftLoopArray(int matrix[44][11])
       rowCopy = matrix[row - 1][col];
       matrix[row - 1][col] = matrix[row][col];
       matrix[row][col] = rowCopy;
+    }
+  }
+}
+
+void shiftMatrixLeft(int matrix[24][11])
+{
+  int colCopy;
+  int width = 11;
+  int height = 44;
+  for (int i = 0; i < height-1; i++) {
+    for (int j = 0; j < width; j++) {
+      int colIndex = j - 1;
+      if (colIndex < 0) {
+        colIndex = width - 1;
+      }
+
+      //arr[j][i]++;
+      matrix[colIndex][i] = j;
     }
   }
 }

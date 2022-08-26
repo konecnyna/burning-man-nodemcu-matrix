@@ -125,7 +125,6 @@ void excitePenis()
 
 void animatePenis()
 {
-  mirrorMatrix(semenPixels, 25, 11);
   excitePenis();
   ejaculate();
   dripSemen();
