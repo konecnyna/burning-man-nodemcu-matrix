@@ -21,6 +21,7 @@
 #include "./images/Heart.h"
 #include "./images/Penis.h"
 #include "./images/Fireworks.h"
+#include "./images/Equalizer.h"
 
 void cleanup()
 {
@@ -32,6 +33,7 @@ void startScenes(Adafruit_NeoMatrix *matrix)
 {
   cleanup();
 
+  // animateEqualizer();
   animatePenis();
 
   scrollText(matrix, "FUCK YOUR BURN =)", green, 25);
@@ -41,7 +43,6 @@ void startScenes(Adafruit_NeoMatrix *matrix)
 
   displayRainbowBoxes(10, 250);
   playFireworksAnim();
-
 
   animateHeart();
   cleanup();
