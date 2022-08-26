@@ -30,37 +30,39 @@ void pingpongImage(MatrixImage img, int loops, int shiftSize, int delayMs)
   }
 }
 
-//, int (*decayFn)(int)
-void pingpongImage(MatrixImage source, int loops, int shiftSize)
+void pingpongImage(int matrix[44][11], RGB colors[], int loops, int shiftSize, int (*decayFn)(int))
 {
 
-  MatrixImage copy = source;
+  int copy[44][11];
+  copyMatrix(copy, matrix, 44, 11);
+
   while (loops-- > 0)
   {
     for (int i = shiftSize; i >= 0; i--)
     {
-      drawImage(copy);
-      // shiftUpArray(copy.pixels);
-      delay(50);
+      drawImage(colors, copy);
+      shiftUpArray(copy);
+      delay((*decayFn)(loops));
     }
 
-    // for (int i = shiftSize; i >= 0; i--)
-    // {
-    //   drawImage(matrix, copy);
-    //   // shiftDownArray(copy.pixels);
-    //   delay(50);
-    // }
+    for (int i = shiftSize; i >= 0; i--)
+    {
+      drawImage(colors, copy);
+      shiftDownArray(copy);
+      delay((*decayFn)(loops));
+    }
   }
 }
 
+int baseAnimSpeed = 5;
 int decay(int loops)
 {
-  return matrixWidth + (matrixWidth * loops);
+  return baseAnimSpeed + (baseAnimSpeed * loops);
 }
 
 int noDecay(int loops)
 {
-  return loops;
+  return baseAnimSpeed;
 }
 
 void panImage(MatrixImage mtrx)

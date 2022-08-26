@@ -19,7 +19,7 @@ void displayText(Adafruit_NeoMatrix *matrix, int index, String textToDisplay, in
   matrix->setCursor(index, CENTER_TEXT_CURSOR_OFFSET);
   matrix->print(textToDisplay);
   matrix->setTextColor(color);
-  matrix->setRotation(2);
+  matrix->setRotation(0);
   matrix->show();
 }
 

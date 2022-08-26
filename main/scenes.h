@@ -3,10 +3,11 @@
 #include "./models/rgb.h"
 #include "./models/MatrixImage.h"
 #include "./models/Colors.h"
+// Utils
+#include "./utils/MatrixUtil.h"
+
 // Classes
 #include "./utils/Image.h"
-#include "./utils/MatrixUtil.h"
-// #include "shit.h"
 
 // Animations
 #include "./animations/Text.h"
@@ -31,6 +32,8 @@ void startScenes(Adafruit_NeoMatrix *matrix)
 {
   cleanup();
 
+  animatePenis();
+
   scrollText(matrix, "FUCK YOUR BURN =)", green, 25);
   scrollText(matrix, "WAKING DREAMS 2022", purple, 25);
   scrollText(matrix, "METAMORPHOSES 2019", orange, 25);
@@ -38,18 +41,10 @@ void startScenes(Adafruit_NeoMatrix *matrix)
 
   displayRainbowBoxes(10, 250);
   playFireworksAnim();
-  
-  //colorWipeBottomUpRainbow(matrix, 5);
 
-  // for (int i = 0; i < 3; i++)
-  // {
-  //   drawImage(penis);
-  //   delay(1000);
-  //   drawImage(eggplant);
-  //   delay(1000);
-  //   drawImage(heart);
-  //   delay(1000);
-  // }
+
+  animateHeart();
+  cleanup();
 
   rainbow(15, 1);
   cleanup();
@@ -68,6 +63,10 @@ void startScenes(Adafruit_NeoMatrix *matrix)
   colorWipeBottomUp(blue, colorWipeDelay);
   colorWipeBottomDown(indego, colorWipeDelay);
   colorWipeBottomUp(violet, colorWipeDelay);
-  
-  delay(5 * 1000);
+  cleanup();
+
+  animateEggplant();
+  cleanup();
+
+  delay(15 * 1000);
 }

@@ -56,3 +56,33 @@ void shiftLoopArray(int matrix[44][11])
     }
   }
 }
+
+void shiftArrayUpByN(int matrix[44][11], int n) {
+  for (int i = 0; i < n; i++) {
+    shiftUpArray(matrix);
+  }
+}
+
+void shiftArrayDownByN(int matrix[44][11], int n) {
+  for (int i = 0; i < n; i++) {
+    shiftDownArray(matrix);
+  }
+}
+
+
+void copyMatrix(void *destMatrix, void *srcMatrix, int rowCount, int columnCount)
+{
+  memcpy(destMatrix, srcMatrix, rowCount * columnCount * sizeof(int));
+}
+
+void mirrorMatrix(int matrix[44][11], int height, int width) {
+  int rowCopy;
+  for (int row = 0; row < height; row++) {
+    for (int col = 0; col < width / 2; col++) {
+      int mirrorIndex = width - 1 - col;
+      rowCopy = matrix[row][mirrorIndex];
+      matrix[row][mirrorIndex] = matrix[row][col];
+      matrix[row][col] = rowCopy;
+    }
+  }
+}

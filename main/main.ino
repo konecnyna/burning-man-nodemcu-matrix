@@ -16,11 +16,11 @@ Adafruit_NeoPixel strip = Adafruit_NeoPixel(matrixWidth * matrixHeight, PIN);
 // Classes
 #include "Scenes.h"
 
-
 void setupMatrix() {
   matrix->begin();
   matrix->setTextWrap(false);
   matrix->setBrightness(BRIGHTNESS);
+  matrix->setRotation(0);
   matrix->clear();
 }
 
@@ -37,7 +37,7 @@ void setup() {
 }
 
 void loop() {
-  Serial.println("start lewp");
+  Serial.println("Starting animations...");
   startScenes(matrix);
-  Serial.println("end lewp");
+  Serial.println("Finished animations successfully!");
 }
