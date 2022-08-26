@@ -106,7 +106,7 @@ void dripSemen()
   int blankRow[11] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
   for (int i = 0; i < 22; i++)
   {
-    drawRow(i, semenColors, penisPixels[i], false);
+    drawRow(i, semenColors, semenPixels[i], false);
     if (i < 12)
     {
       // clear load.
@@ -129,4 +129,6 @@ void animatePenis()
   excitePenis();
   ejaculate();
   dripSemen();
+
+  delay(10 * 1000);
 }
