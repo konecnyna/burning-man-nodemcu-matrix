@@ -134,7 +134,7 @@ int randomY() {
 }
 
 int randomTime() {
-  return rand() % (maxY + 90) + 60;
+  return rand() % (maxY + 75) + 50;
 }
 
 void playFireworksAnim()
