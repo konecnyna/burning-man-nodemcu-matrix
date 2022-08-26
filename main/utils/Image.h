@@ -60,10 +60,7 @@ void drawRow(int row, RGB colors[], int pixels[11], bool show)
   for (column = 0; column < numberColumns; column++)
   {
     int colorIndex = pixels[column];
-    if (colorIndex == 0)
-    {
-      continue;
-    }
+
     RGB pixelColor = colors[colorIndex];
     uint16_t matrixColor = matrix->Color(pixelColor.r, pixelColor.g, pixelColor.b);
     matrix->drawPixel(row, column, matrixColor);
