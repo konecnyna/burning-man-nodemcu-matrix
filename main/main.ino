@@ -1,53 +1,34 @@
-
 #include <Adafruit_GFX.h>
 #include <Adafruit_NeoMatrix.h>
 #include <Adafruit_NeoPixel.h>
+#include "textutils.h"
 
-#define PIN D8
-#define BRIGHTNESS 5
-#define mw 8
-#define mh 16
+#define PIN 15 // GPIO15 for D8
 
+Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(44, 11, PIN,
+  NEO_MATRIX_TOP + NEO_MATRIX_LEFT +
+  NEO_MATRIX_ROWS + NEO_MATRIX_ZIGZAG,
+  NEO_GRB + NEO_KHZ800);
 
-Adafruit_NeoMatrix *matrix = new Adafruit_NeoMatrix(mw, mh, PIN,
-    NEO_MATRIX_TOP     + NEO_MATRIX_LEFT +
-    NEO_MATRIX_ROWS + NEO_MATRIX_ZIGZAG,
-    NEO_GRB            + NEO_KHZ800);
+const uint16_t colors[] = {
+  matrix.Color(255, 0, 0), matrix.Color(0, 255, 0), matrix.Color(0, 0, 255) };
 
+const char* text = "hello";
+int textWidth;
+int x;
+int pass = 0;
 
-Adafruit_NeoMatrix *textMatrix = new Adafruit_NeoMatrix(16, 8, PIN,
-    NEO_MATRIX_TOP     + NEO_MATRIX_LEFT +
-    NEO_MATRIX_COLUMNS + NEO_MATRIX_ZIGZAG,
-    NEO_GRB            + NEO_KHZ800);
-
-
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(128, PIN, NEO_GRB + NEO_KHZ800);
-
-#include "animations.h"
 void setup() {
-  Serial.begin(115200);
-  matrix->begin();
-  matrix->setTextWrap(false);
-  matrix->setBrightness(BRIGHTNESS);
-  matrix->clear();
+  matrix.begin();
+  matrix.setTextWrap(false);
+  matrix.setBrightness(40);
+  matrix.setTextColor(colors[0]);
 
-  textMatrix->begin();
-  textMatrix->setTextWrap(false);
-  textMatrix->setBrightness(BRIGHTNESS);
-  textMatrix->clear();
-  
-  strip.begin(); // Initialize NeoPixel strip object (REQUIRED)
-  strip.show();  // Initialize all pixels to 'off'
-  strip.setBrightness(BRIGHTNESS);
-
-  //Flips em!
-  initImages();
-
-  
+  textWidth = getTextWidth(matrix, text);
+  x = matrix.width();
 }
 
-
 void loop() {
-  strip.clear();
-  startBm2019();
+  //scrollCenteredText(matrix, text, x, pass, colors);
+  fadeText(matrix, text, x, pass, colors, textWidth);
 }
