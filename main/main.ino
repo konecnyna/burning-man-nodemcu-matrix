@@ -5,7 +5,7 @@
 
 #define PIN 15
 
-#define BRIGHTNESS 40
+#define BRIGHTNESS 25
 
 int matrixWidth = 44;
 int matrixHeight = 11;
@@ -45,7 +45,12 @@ void setup() {
 }
 
 void loop() {
-  newMainloop();
+  startPacman();
+  drawSnake();
+  drawMushroom();
+  drawAlien();
+  drawPacman();
+
   Serial.println("Starting animations...");
   startScenes(matrix);
   Serial.println("Finished animations successfully!");
