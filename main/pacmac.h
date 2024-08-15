@@ -16,46 +16,47 @@ Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(MATRIX_WIDTH, MATRIX_HEIGHT, PIN,
 uint32_t yellow = matrix.Color(255, 255, 0);
 uint32_t black = matrix.Color(0, 0, 0);
 uint32_t white = matrix.Color(255, 255, 255);
+uint32_t blue = matrix.Color(0, 0, 255);
 
-// Pac-Man frames
-uint32_t pacman_open[MATRIX_WIDTH][MATRIX_HEIGHT] = {
-  {black, black, black, black, yellow, yellow, yellow, black, black, black, black},
-  {black, black, black, yellow, black, black, yellow, yellow, black, black, black},
-  {black, black, yellow, black, black, black, black, yellow, yellow, black, black},
-  {black, yellow, black, black, black, black, black, black, yellow, yellow, black},
-  {yellow, yellow, yellow, yellow, yellow, black, black, black, black, black, yellow},
-  {yellow, yellow, yellow, yellow, yellow, black, black, black, black, black, yellow},
-  {yellow, yellow, black, black, black, black, black, black, yellow, yellow, black},
-  {black, yellow, black, black, black, black, black, yellow, yellow, black, black},
-  {black, black, yellow, black, black, black, yellow, yellow, black, black, black},
-  {black, black, black, yellow, black, yellow, yellow, black, black, black, black},
-  {black, black, black, black, yellow, yellow, yellow, black, black, black, black}
-};
-
-uint32_t pacman_closed[MATRIX_WIDTH][MATRIX_HEIGHT] = {
+// Pac-Man frames (11x11)
+uint32_t pacman_open[11][11] = {
   {black, black, black, black, yellow, yellow, yellow, black, black, black, black},
   {black, black, black, yellow, yellow, yellow, yellow, yellow, black, black, black},
   {black, black, yellow, yellow, yellow, yellow, yellow, yellow, yellow, black, black},
-  {black, yellow, yellow, yellow, yellow, yellow, yellow, yellow, yellow, yellow, black},
-  {yellow, yellow, yellow, yellow, yellow, yellow, yellow, yellow, yellow, yellow, yellow},
-  {yellow, yellow, yellow, yellow, yellow, yellow, yellow, yellow, yellow, yellow, yellow},
-  {yellow, yellow, yellow, yellow, yellow, yellow, yellow, yellow, yellow, yellow, yellow},
-  {black, yellow, yellow, yellow, yellow, yellow, yellow, yellow, yellow, yellow, black},
+  {black, yellow, yellow, yellow, yellow, blue, yellow, yellow, black, black, black},
+  {yellow, yellow, yellow, yellow, yellow, yellow, yellow, black, black, black, black},
+  {yellow, yellow, yellow, yellow, yellow, yellow, black, black, black, black, black},
+  {yellow, yellow, yellow, yellow, yellow, yellow, yellow, black, black, black, black},
+  {black, yellow, yellow, yellow, yellow, yellow, yellow, yellow, black, black, black},
   {black, black, yellow, yellow, yellow, yellow, yellow, yellow, yellow, black, black},
   {black, black, black, yellow, yellow, yellow, yellow, yellow, black, black, black},
   {black, black, black, black, yellow, yellow, yellow, black, black, black, black}
 };
 
-// Dots
-uint32_t dot[MATRIX_WIDTH][MATRIX_HEIGHT] = {
+uint32_t pacman_closed[11][11] = {
+  {black, black, black, black, yellow, yellow, yellow, black, black, black, black},
+  {black, black, black, yellow, yellow, yellow, yellow, yellow, black, black, black},
+  {black, black, yellow, yellow, yellow, yellow, yellow, yellow, yellow, black, black},
+  {black, yellow, yellow, yellow, yellow, blue, yellow, yellow, yellow, yellow, black},
+  {yellow, yellow, yellow, yellow, yellow, yellow, yellow, yellow, yellow, yellow, yellow},
+  {yellow, yellow, yellow, yellow, yellow, yellow, yellow, black, black, black, black},
+  {yellow, yellow, yellow, yellow, yellow, yellow, yellow, yellow, yellow, yellow, yellow},
+  {black, yellow, yellow, yellow, yellow, yellow, yellow, yellow, yellow, yellow, black},
+  {black, black, yellow, yellow, yellow, yellow, yellow, yellow, yellow, black, black},
+  {black, black, black, yellow, yellow, yellow, yellow, yellow, black, black, black},
+  {black, black, black, black, yellow, yellow, yellow, black, black, black, black}
+};
+
+// Dots (11x11)
+uint32_t dot[11][11] = {
+  {black, black, black, black, black, black, black, black, black, black, black},
+  {black, black, black, black, black, black, black, black, black, black, black},
   {black, black, black, black, black, black, black, black, black, black, black},
   {black, black, black, black, black, black, black, black, black, black, black},
   {black, black, black, black, black, black, black, black, black, black, black},
   {black, black, black, black, black, white, black, black, black, black, black},
   {black, black, black, black, black, black, black, black, black, black, black},
   {black, black, black, black, black, black, black, black, black, black, black},
-  {black, black, black, black, black, black, black, black, black, black, black},
-  {black, black, black, black, black, white, black, black, black, black, black},
   {black, black, black, black, black, black, black, black, black, black, black},
   {black, black, black, black, black, black, black, black, black, black, black},
   {black, black, black, black, black, black, black, black, black, black, black}
@@ -66,12 +67,12 @@ void setup() {
   matrix.setBrightness(40);  // Adjust brightness if needed
 }
 
-void displayFrame(uint32_t frame[MATRIX_WIDTH][MATRIX_HEIGHT], int yOffset) {
-  for (int x = 0; x < MATRIX_WIDTH; x++) {
-    for (int y = 0; y < MATRIX_HEIGHT; y++) {
+void displayFrame(uint32_t frame[11][11], uint32_t dotFrame[11][11], int yOffset) {
+  for (int x = 0; x < 11; x++) {
+    for (int y = 0; y < 11; y++) {
       int yPos = yOffset + y;
       if (yPos >= 0 && yPos < MATRIX_HEIGHT) {
-        matrix.drawPixel(x, yPos, frame[x][y]);
+        matrix.drawPixel(x, yPos, frame[x][y]);        
       }
     }
   }
@@ -79,13 +80,15 @@ void displayFrame(uint32_t frame[MATRIX_WIDTH][MATRIX_HEIGHT], int yOffset) {
 }
 
 void playPacManAnimation(int delayMs) {
-  for (int i = MATRIX_HEIGHT - MATRIX_WIDTH; i >= 0; i--) {
-    // Move Pac-Man and dots across the screen from bottom to top
+  
+
+  for (int i = 0; i <= MATRIX_HEIGHT; i++) {
+    // Move Pac-Man and dots across the screen from top to bottom
     matrix.fillScreen(black);  // Clear the screen
-    displayFrame(pacman_open, i);
+    displayFrame(pacman_open, dot, i);
     delay(delayMs);
     matrix.fillScreen(black);  // Clear the screen
-    displayFrame(pacman_closed, i);
+    displayFrame(pacman_closed, dot, i);
     delay(delayMs);
   }
 }
