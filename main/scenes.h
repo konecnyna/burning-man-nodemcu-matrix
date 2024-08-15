@@ -24,11 +24,26 @@
 #include "./images/Equalizer.h"
 #include "./images/Man.h"
 
+
 void cleanup()
 {
   matrix->clear();
   strip.clear();
 }
+
+void colorWipe() {
+  int colorWipeDelay = 50;
+  colorWipeBottomUp(red, colorWipeDelay);
+  colorWipeBottomDown(orange, colorWipeDelay);
+  colorWipeBottomUp(yellow, colorWipeDelay);
+  colorWipeBottomDown(green, colorWipeDelay);
+  colorWipeBottomUp(blue, colorWipeDelay);
+  colorWipeBottomDown(indego, colorWipeDelay);
+  colorWipeBottomUp(violet, colorWipeDelay);
+  cleanup();
+}
+
+
 
 void startScenes(Adafruit_NeoMatrix *matrix)
 {
@@ -36,15 +51,16 @@ void startScenes(Adafruit_NeoMatrix *matrix)
 
   // animateEqualizer();
   animateMan();
-  animatePenis();
-
-  scrollText(matrix, "FUCK YOUR BURN =)", green, 25);
-  scrollText(matrix, "WAKING DREAMS 2022", purple, 25);
-  scrollText(matrix, "METAMORPHOSES 2019", orange, 25);
+  
+  scrollText(matrix, "C & C 2024", orange, 25);
+  scrollText(matrix, "ANIMALIA 2023", yellow, 25);
+  scrollText(matrix, "WAKING DREAMS 2022", purple, 25); 
   scrollText(matrix, "I-ROBOT 2018", white, 25);
 
   displayRainbowBoxes(10, 250);
   playFireworksAnim();
+
+  animatePenis();
 
   animateHeart();
   cleanup();
@@ -55,20 +71,10 @@ void startScenes(Adafruit_NeoMatrix *matrix)
   theaterChase(purple, 50);
   cleanup();
 
-  // animateMan();
-
   theaterChaseRainbow(50);
   cleanup();
 
-  int colorWipeDelay = 50;
-  colorWipeBottomUp(red, colorWipeDelay);
-  colorWipeBottomDown(orange, colorWipeDelay);
-  colorWipeBottomUp(yellow, colorWipeDelay);
-  colorWipeBottomDown(green, colorWipeDelay);
-  colorWipeBottomUp(blue, colorWipeDelay);
-  colorWipeBottomDown(indego, colorWipeDelay);
-  colorWipeBottomUp(violet, colorWipeDelay);
-  cleanup();
+  colorWipe();
 
   animateEggplant();
   cleanup();
