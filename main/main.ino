@@ -12,10 +12,12 @@ int matrixHeight = 11;
 
 uint8_t matrixType = NEO_MATRIX_TOP + NEO_MATRIX_LEFT + NEO_MATRIX_ROWS + NEO_MATRIX_ZIGZAG;
 Adafruit_NeoMatrix *matrix = new Adafruit_NeoMatrix(matrixWidth, matrixHeight, PIN, matrixType, NEO_GRB + NEO_KHZ800);
+
 Adafruit_NeoPixel strip = Adafruit_NeoPixel(matrixWidth * matrixHeight, PIN);
 
 // Classes
 #include "Scenes.h"
+#include "./new/newmain.h"
 
 void setupMatrix() {
   matrix->begin();
@@ -38,9 +40,12 @@ void setup() {
 
   mirrorMatrix(semenPixels, 25, 11);
   mirrorMatrix(manPixels, 44, 11);
+
+  newMainSetup();
 }
 
 void loop() {
+  newMainloop();
   Serial.println("Starting animations...");
   startScenes(matrix);
   Serial.println("Finished animations successfully!");
