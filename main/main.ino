@@ -10,7 +10,7 @@ Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(11, 44, PIN,
   NEO_GRB + NEO_KHZ800);
 
 // Define colors
-uint16_t pink = matrix.Color(0, 0, 255);
+uint16_t pink = matrix.Color(0, 0, 0);
 uint16_t red = matrix.Color(255, 0, 0);
 uint16_t green = matrix.Color(0, 128, 0);
 uint16_t white = matrix.Color(255, 255, 255);
