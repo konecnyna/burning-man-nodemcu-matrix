@@ -1,53 +1,81 @@
-
-#include <Adafruit_GFX.h>
 #include <Adafruit_NeoMatrix.h>
+#include <Adafruit_GFX.h>
 #include <Adafruit_NeoPixel.h>
 
-#define PIN D8
-#define BRIGHTNESS 5
-#define mw 8
-#define mh 16
+#define PIN 15
 
+Adafruit_NeoMatrix matrix = Adafruit_NeoMatrix(11, 44, PIN,
+  NEO_MATRIX_TOP + NEO_MATRIX_LEFT +
+  NEO_MATRIX_COLUMNS + NEO_MATRIX_ZIGZAG,
+  NEO_GRB + NEO_KHZ800);
 
-Adafruit_NeoMatrix *matrix = new Adafruit_NeoMatrix(mw, mh, PIN,
-    NEO_MATRIX_TOP     + NEO_MATRIX_LEFT +
-    NEO_MATRIX_ROWS + NEO_MATRIX_ZIGZAG,
-    NEO_GRB            + NEO_KHZ800);
+// Define colors
+uint16_t pink = matrix.Color(0, 0, 0);
+uint16_t red = matrix.Color(255, 0, 0);
+uint16_t green = matrix.Color(0, 128, 0);
+uint16_t white = matrix.Color(255, 255, 255);
+uint16_t black = matrix.Color(0, 0, 0);
 
+// Define the pixel data
+const uint16_t pixelBitmap[44][11] = {
+  { pink, pink, pink, pink, pink, red, red, red, pink, pink, pink },
+  { pink, pink, pink, pink, red, pink, pink, red, pink, pink, pink },
+  { pink, pink, pink, pink, red, pink, pink, red, pink, pink, pink },
+  { pink, pink, pink, pink, red, pink, pink, pink, pink, pink, pink },
+  { pink, pink, pink, pink, green, green, pink, pink, pink, pink, pink },
+  { pink, pink, pink, green, green, green, green, pink, pink, pink, pink },
+  { pink, pink, green, black, green, green, black, green, pink, pink, pink },
+  { pink, pink, green, white, green, green, white, green, pink, pink, pink },
+  { pink, pink, green, green, green, green, green, green, pink, pink, pink },
+  { pink, pink, green, green, green, green, green, green, pink, pink, pink },
+  { pink, pink, pink, green, green, green, green, pink, pink, pink, pink },
+  { pink, pink, pink, pink, green, green, pink, pink, pink, pink, pink },
+  { pink, pink, pink, pink, green, green, pink, pink, pink, pink, pink },
+  { pink, pink, pink, pink, green, green, pink, pink, pink, pink, pink },
+  { pink, pink, pink, pink, green, green, green, pink, pink, pink, pink },
+  { pink, pink, pink, pink, pink, green, green, green, pink, pink, pink },
+  { pink, pink, pink, pink, pink, pink, green, green, green, pink, pink },
+  { pink, pink, pink, pink, pink, pink, pink, green, green, pink, pink },
+  { pink, pink, pink, pink, pink, pink, pink, pink, green, green, pink },
+  { pink, pink, pink, pink, pink, pink, pink, pink, green, green, green },
+  { pink, pink, pink, pink, pink, pink, pink, pink, green, green, green },
+  { pink, pink, pink, pink, green, green, green, green, green, green, pink },
+  { pink, pink, pink, green, green, green, green, green, green, pink, pink },
+  { pink, pink, green, green, green, green, green, green, pink, pink, pink },
+  { pink, green, green, green, pink, pink, pink, pink, pink, pink, pink },
+  { green, green, green, pink, pink, pink, pink, pink, pink, pink, pink },
+  { green, green, pink, pink, pink, pink, pink, pink, pink, pink, pink },
+  { green, green, pink, pink, pink, pink, pink, pink, pink, pink, pink },
+  { pink, green, green, pink, pink, pink, pink, pink, pink, pink, pink },
+  { pink, green, green, green, pink, pink, pink, pink, pink, pink, pink },
+  { pink, pink, green, green, green, pink, pink, pink, pink, pink, pink },
+  { pink, pink, pink, green, green, green, pink, pink, pink, pink, pink },
+  { pink, pink, pink, pink, green, green, green, pink, pink, pink, pink },
+  { pink, pink, pink, pink, pink, green, green, pink, pink, pink, pink },
+  { pink, pink, pink, pink, pink, pink, green, green, pink, pink, pink },
+  { pink, pink, pink, pink, pink, pink, pink, green, green, pink, pink },
+  { pink, pink, pink, pink, pink, pink, pink, green, green, pink, pink },
+  { pink, pink, pink, pink, pink, pink, pink, pink, green, green, pink },
+  { pink, pink, pink, pink, pink, pink, pink, pink, pink, green, green },
+  { pink, pink, pink, pink, pink, pink, pink, pink, pink, green, green },
+  { pink, pink, pink, pink, pink, pink, pink, pink, pink, pink, green },
+  { pink, pink, pink, pink, pink, pink, pink, pink, pink, pink, green },
+  { pink, pink, pink, pink, pink, pink, pink, pink, pink, green, green },
+  { pink, pink, pink, pink, pink, pink, pink, green, green, green, black },
+};
 
-Adafruit_NeoMatrix *textMatrix = new Adafruit_NeoMatrix(16, 8, PIN,
-    NEO_MATRIX_TOP     + NEO_MATRIX_LEFT +
-    NEO_MATRIX_COLUMNS + NEO_MATRIX_ZIGZAG,
-    NEO_GRB            + NEO_KHZ800);
-
-
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(128, PIN, NEO_GRB + NEO_KHZ800);
-
-#include "animations.h"
 void setup() {
-  Serial.begin(115200);
-  matrix->begin();
-  matrix->setTextWrap(false);
-  matrix->setBrightness(BRIGHTNESS);
-  matrix->clear();
-
-  textMatrix->begin();
-  textMatrix->setTextWrap(false);
-  textMatrix->setBrightness(BRIGHTNESS);
-  textMatrix->clear();
-  
-  strip.begin(); // Initialize NeoPixel strip object (REQUIRED)
-  strip.show();  // Initialize all pixels to 'off'
-  strip.setBrightness(BRIGHTNESS);
-
-  //Flips em!
-  initImages();
-
-  
+  matrix.begin();
+  matrix.setBrightness(40);
 }
 
-
 void loop() {
-  strip.clear();
-  startBm2019();
+  matrix.fillScreen(0);
+  for (int y = 0; y < 44; y++) {
+    for (int x = 0; x < 11; x++) {
+      matrix.drawPixel(x, y, pixelBitmap[y][x]);
+    }
+  }
+  matrix.show();
+  delay(10000);
 }
