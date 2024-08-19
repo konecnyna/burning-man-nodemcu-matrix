@@ -11,6 +11,7 @@
     "*.tcc": "cpp",
     "deque": "cpp",
     "string_view": "cpp",
-    "array": "cpp"
+    "array": "cpp",
+    "bitset": "cpp"
   }
 }
