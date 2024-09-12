@@ -1,0 +1,5 @@
+{
+    "board": "esp8266:esp8266:nodemcuv2",
+    "port": "/dev/tty.SLAB_USBtoUART",
+    "sketch": "main/main.ino"
+}
