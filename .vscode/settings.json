@@ -1,0 +1,17 @@
+{
+  "files.associations": {
+    "__hash_table": "cpp",
+    "__split_buffer": "cpp",
+    "atomic": "cpp",
+    "ios": "cpp",
+    "string": "cpp",
+    "system_error": "cpp",
+    "unordered_map": "cpp",
+    "vector": "cpp",
+    "*.tcc": "cpp",
+    "deque": "cpp",
+    "string_view": "cpp",
+    "array": "cpp",
+    "bitset": "cpp"
+  }
+}
